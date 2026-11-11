@@ -6,491 +6,272 @@
 <title>Swurkif | Find Your Opportunity</title>
 <style>
 :root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--green:#16834a;--red:#c0392b}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
 header{background:var(--navy);color:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:27px;font-weight:bold}
-nav{display:flex;gap:8px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:bold}nav{display:flex;gap:8px;flex-wrap:wrap}
 button{border:0;border-radius:7px;padding:11px 15px;cursor:pointer;font-weight:bold}
-nav button{background:white;color:var(--navy)}
-.primary{background:var(--blue);color:white}
-.success{background:var(--green);color:white}
-.danger{background:var(--red);color:white}
+nav button{background:white;color:var(--navy)}.primary{background:var(--blue);color:white}.success{background:var(--green);color:white}.danger{background:var(--red);color:white}
 .hero{background:linear-gradient(120deg,#102b50,#1769c2);color:white;text-align:center;padding:60px 20px}
-.hero h1{font-size:36px}
-.container{max-width:1100px;margin:25px auto;padding:0 16px}
+.hero h1{font-size:36px}.container{max-width:1100px;margin:25px auto;padding:0 16px}
 .panel,.job,.auth{background:white;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 3px 14px #102b5010}
-h2,h3{color:var(--navy)}
-input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #ccd5df;border-radius:7px;font-size:15px}
-textarea{min-height:100px}
-label{font-weight:bold;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.hidden{display:none!important}
-.notice{background:#fff7e6;border:1px solid #f2d28b;padding:15px;border-radius:8px;line-height:1.6;margin:12px 0}
+h2,h3{color:var(--navy)}input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #ccd5df;border-radius:7px;font-size:15px}
+textarea{min-height:100px}label{font-weight:bold;font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.hidden{display:none!important}.notice{background:#fff7e6;border:1px solid #f2d28b;padding:15px;border-radius:8px;line-height:1.6;margin:12px 0}
 .tag{display:inline-block;background:#e8f1ff;color:#1769c2;padding:5px 9px;border-radius:20px;font-size:12px}
 footer{background:var(--navy);color:white;text-align:center;padding:25px;margin-top:40px}
 #message{padding:12px;margin:15px 0;border-radius:7px;background:#e8f1ff;color:var(--navy)}
-.small{font-size:13px;color:#667085}
+.small{font-size:13px;color:#667085}.password-wrap{display:flex;gap:7px;align-items:center;margin:7px 0 15px}
+.password-wrap input{margin:0;flex:1;min-width:0}.password-wrap button{background:#e8f1ff;color:var(--navy);white-space:nowrap}
+.linkbtn{background:none;color:var(--blue);padding:7px 0;text-decoration:underline}
 @media(max-width:600px){header{justify-content:center}.hero h1{font-size:28px}nav{justify-content:center}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">Swurkif</div>
   <nav>
     <button onclick="showSection('home')">Home</button>
     <button onclick="showSection('jobs')">Find Jobs</button>
-    <button onclick="showSection('register')">Register</button>
-    <button onclick="showSection('login')">Login</button>
+    <button id="registerNav" onclick="showSection('register')">Register</button>
+    <button id="loginNav" onclick="showSection('login')">Login</button>
     <button id="dashboardNav" class="hidden" onclick="showDashboard()">Dashboard</button>
+    <button id="accountNav" class="hidden" onclick="showSection('account')">My Account</button>
     <button id="logoutNav" class="hidden" onclick="logout()">Logout</button>
   </nav>
 </header>
-
 <section class="hero" id="hero">
   <h1>Find Your Opportunity</h1>
   <p>Discover jobs, connect with employers and build your future.</p>
   <button class="primary" onclick="showSection('register')">Create Account</button>
   <button onclick="showSection('jobs')">Explore Jobs</button>
 </section>
-
 <main class="container">
-<div id="message" class="hidden"></div>
+<div id="message" class="hidden" role="status"></div>
 
 <section id="register" class="auth hidden">
 <h2>Create Your Account</h2>
-<label>Full Name</label>
-<input id="regName" placeholder="Enter your name">
-<label>Email</label>
-<input id="regEmail" type="email" placeholder="Email address">
+<label>Full Name</label><input id="regName" autocomplete="name" placeholder="Enter your name">
+<label>Email</label><input id="regEmail" type="email" autocomplete="email" placeholder="Email address">
 <label>Password</label>
-<input id="regPassword" type="password" placeholder="Minimum 6 characters">
-<label>Account Type</label>
-<select id="regRole">
-<option value="jobseeker">Job Seeker</option>
-<option value="Employer">Employer</option>
-</select>
+<div class="password-wrap"><input id="regPassword" type="password" autocomplete="new-password" placeholder="Minimum 6 characters"><button type="button" onclick="togglePassword('regPassword',this)">👁️ Show</button></div>
+<label>Confirm Password</label>
+<div class="password-wrap"><input id="regConfirm" type="password" autocomplete="new-password" placeholder="Enter password again"><button type="button" onclick="togglePassword('regConfirm',this)">👁️ Show</button></div>
+<label>Account Type</label><select id="regRole"><option value="jobseeker">Job Seeker</option><option value="Employer">Employer</option></select>
 <button class="primary" onclick="register()">Create Account</button>
+<p class="small">Already registered? <button class="linkbtn" onclick="showSection('login')">Login</button></p>
 </section>
 
 <section id="login" class="auth hidden">
-<h2>Login</h2>
-<label>Email</label>
-<input id="loginEmail" type="email" placeholder="Email">
+<h2>Login to Swurkif</h2>
+<label>Email</label><input id="loginEmail" type="email" autocomplete="username" placeholder="Email">
 <label>Password</label>
-<input id="loginPassword" type="password" placeholder="Password">
+<div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password"><button type="button" onclick="togglePassword('loginPassword',this)">👁️ Show</button></div>
+<button class="linkbtn" onclick="forgotPassword()">Forgot Password?</button><br>
 <button class="primary" onclick="login()">Login</button>
+<p class="small">New to Swurkif? <button class="linkbtn" onclick="showSection('register')">Create account</button></p>
+</section>
+
+<section id="completeProfile" class="auth hidden">
+<h2>Complete Your Profile</h2>
+<p>Your Firebase login exists, but your Swurkif profile is missing. Complete it once to open your account.</p>
+<label>Your Name</label><input id="profileName" placeholder="Enter your full name">
+<label>Account Type</label><select id="profileRole"><option value="jobseeker">Job Seeker</option><option value="Employer">Employer</option></select>
+<button class="primary" onclick="completeProfile()">Save Profile & Continue</button>
+<p class="small">Choose the role that belongs to this account. Do not select Employer unless this is your employer account.</p>
 </section>
 
 <section id="account" class="panel hidden">
-<h2>My Account</h2>
-<p id="accountName"></p>
-<p id="accountEmail"></p>
-<p id="accountRole"></p>
+<h2>My Account</h2><p id="accountName"></p><p id="accountEmail"></p><p id="accountRole"></p>
 </section>
 
 <section id="jobs" class="hidden">
-<div class="panel">
-<h2>Find Jobs</h2>
-<input id="searchJob" placeholder="Search jobs, company or city" oninput="renderJobs()">
-</div>
+<div class="panel"><h2>Find Jobs</h2><input id="searchJob" placeholder="Search jobs, company or city" oninput="renderJobs()"></div>
 <div id="jobList" class="grid"></div>
 </section>
 
 <section id="employerPanel" class="panel hidden">
 <h2>Employer Dashboard</h2>
-<div class="notice">
-<h3>Job Posting Fee: Rs. 500</h3>
-<b>JazzCash Number:</b> 03027373872<br>
-<b>Account Title:</b> Shahzaib Ajmal
-<p>Send Rs. 500 and enter your transaction ID. Admin will manually verify payment.</p>
-</div>
-<label>Company Name</label>
-<input id="company" placeholder="Company name">
-<label>Job Title</label>
-<input id="title" placeholder="Job title">
-<label>Job Description</label>
-<textarea id="description" placeholder="Job details"></textarea>
-<label>Location</label>
-<input id="location" placeholder="City">
-<label>Job Type</label>
-<select id="type">
-<option>Full time</option>
-<option>Part time</option>
-<option>Remote</option>
-<option>Contract</option>
-<option>Internship</option>
-</select>
-<label>JazzCash Transaction ID</label>
-<input id="transactionId" placeholder="Transaction ID">
-<button class="primary" onclick="postJob()">Submit Job for Approval</button>
-<hr>
-<h3>My Posted Jobs</h3>
-<div id="employerJobs"></div>
+<div class="notice"><h3>Job Posting Fee: Rs. 500</h3><b>JazzCash Number:</b> 03027373872<br><b>Account Title:</b> Shahzaib Ajmal
+<p>Send Rs. 500 and enter your transaction ID. Admin will manually verify payment.</p></div>
+<label>Company Name</label><input id="company" placeholder="Company name">
+<label>Job Title</label><input id="title" placeholder="Job title">
+<label>Job Description</label><textarea id="description" placeholder="Job details"></textarea>
+<label>Location</label><input id="location" placeholder="City">
+<label>Job Type</label><select id="type"><option>Full time</option><option>Part time</option><option>Remote</option><option>Contract</option><option>Internship</option></select>
+<label>JazzCash Transaction ID</label><input id="transactionId" placeholder="Transaction ID">
+<button class="primary" onclick="postJob()">Submit Job for Approval</button><hr><h3>My Posted Jobs</h3><div id="employerJobs"></div>
 </section>
 
 <section id="seekerPanel" class="panel hidden">
-<h2>Job Seeker Dashboard</h2>
-<div id="myApplications"></div>
+<h2>Job Seeker Dashboard</h2><p>Welcome to your account. Explore approved jobs and track your applications here.</p>
+<button class="primary" onclick="showSection('jobs')">Explore Jobs</button><h3>My Applications</h3><div id="myApplications"></div>
 </section>
 
 <section id="adminPanel" class="panel hidden">
-<h2>Admin Dashboard</h2>
-<div class="notice">Check actual JazzCash payment before approving any job.</div>
-<h3>Pending Jobs</h3>
-<div id="pendingJobs"></div>
-<hr>
-<h3>Applications</h3>
-<div id="adminApplications"></div>
+<h2>Admin Dashboard</h2><div class="notice">Check actual JazzCash payment before approving any job.</div>
+<h3>Pending Jobs</h3><div id="pendingJobs"></div><hr><h3>Registered Users</h3><div id="allUsers"></div><hr><h3>Applications</h3><div id="adminApplications"></div>
 </section>
 </main>
-
-<footer>
-<h2 style="color:white">Swurkif</h2>
-<p>Find Your Opportunity</p>
-<p>© 2026 Swurkif. All Rights Reserved.</p>
-</footer>
+<footer><h2 style="color:white">Swurkif</h2><p>Find Your Opportunity</p><p>© 2026 Swurkif. All Rights Reserved.</p></footer>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
-  authDomain: "swurkif.firebaseapp.com",
-  projectId: "swurkif",
-  storageBucket: "swurkif.firebasestorage.app",
-  messagingSenderId: "250612764204",
-  appId: "1:250612764204:web:43b30828262efcea6f4b89"
+const firebaseConfig={
+ apiKey:"AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
+ authDomain:"swurkif.firebaseapp.com",
+ projectId:"swurkif",
+ storageBucket:"swurkif.firebasestorage.app",
+ messagingSenderId:"250612764204",
+ appId:"1:250612764204:web:43b30828262efcea6f4b89"
 };
-
 firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
-const db=firebase.firestore();
-
+const auth=firebase.auth(),db=firebase.firestore();
 const ADMIN_UID="tsjGJI6nMZZZwhlpa4pmIHCYy3c2";
-
-let currentUser=null;
-let currentProfile=null;
-let jobsCache=[];
-
+let currentUser=null,currentProfile=null,jobsCache=[];
 function el(id){return document.getElementById(id)}
-
-function escapeHTML(v){
-return String(v??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-})[c]);
-}
-
-function message(t){
-el("message").textContent=t;
-el("message").classList.remove("hidden");
-window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function hideSections(){
-["register","login","account","jobs","employerPanel","seekerPanel","adminPanel"]
-.forEach(id=>el(id).classList.add("hidden"));
-}
-
+function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function message(t){el("message").textContent=t;el("message").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function togglePassword(id,btn){const input=el(id);const visible=input.type==="password";input.type=visible?"text":"password";btn.textContent=visible?"🙈 Hide":"👁️ Show"}
+function hideSections(){["register","login","completeProfile","account","jobs","employerPanel","seekerPanel","adminPanel"].forEach(id=>el(id).classList.add("hidden"))}
 function showSection(id){
-hideSections();
-el("hero").classList.toggle("hidden",id!=="home");
-el(id).classList.remove("hidden");
-if(id==="jobs")loadJobs();
-if(id==="account")showAccount();
+ hideSections();el("hero").classList.toggle("hidden",id!=="home");el(id).classList.remove("hidden");
+ el("message").classList.add("hidden");
+ if(id==="jobs")loadJobs();if(id==="account")showAccount();
 }
-
-function isAdmin(){
-return currentUser&&currentUser.uid===ADMIN_UID&&currentProfile?.role==="admin";
-}
-
+function isAdmin(){return !!(currentUser&&currentUser.uid===ADMIN_UID&&currentProfile?.role==="admin")}
 function showDashboard(){
-if(!currentUser||!currentProfile)return message("Please login first.");
-hideSections();
-el("hero").classList.add("hidden");
-if(isAdmin()){
-el("adminPanel").classList.remove("hidden");
-loadAdminDashboard();
-}else if(currentProfile.role==="Employer"){
-el("employerPanel").classList.remove("hidden");
-loadEmployerJobs();
-}else if(currentProfile.role==="jobseeker"){
-el("seekerPanel").classList.remove("hidden");
-loadMyApplications();
+ if(!currentUser)return message("Please login first.");
+ if(!currentProfile){el("hero").classList.add("hidden");hideSections();el("completeProfile").classList.remove("hidden");return}
+ hideSections();el("hero").classList.add("hidden");
+ if(isAdmin()){el("adminPanel").classList.remove("hidden");loadAdminDashboard()}
+ else if(currentProfile.role==="Employer"){el("employerPanel").classList.remove("hidden");loadEmployerJobs()}
+ else if(currentProfile.role==="jobseeker"){el("seekerPanel").classList.remove("hidden");loadMyApplications()}
+ else message("Your account role is not valid. Contact Admin.");
 }
-}
-
-// REGISTER
 async function register(){
-const name=el("regName").value.trim();
-const email=el("regEmail").value.trim();
-const password=el("regPassword").value;
-const role=el("regRole").value;
-if(!name||!email||password.length<6)return message("Enter name, email and password of at least 6 characters.");
-try{
-const result=await auth.createUserWithEmailAndPassword(email,password);
-await db.collection("users").doc(result.user.uid).set({
-name,email,role,
-createdAt:firebase.firestore.FieldValue.serverTimestamp()
-});
-message("Account created successfully!");
-showSection("home");
-}catch(e){message(e.message)}
+ const name=el("regName").value.trim(),email=el("regEmail").value.trim(),password=el("regPassword").value,confirmPassword=el("regConfirm").value,role=el("regRole").value;
+ if(!name||!email||!password||!confirmPassword)return message("Please complete all fields.");
+ if(password.length<6)return message("Password must contain at least 6 characters.");
+ if(password!==confirmPassword)return message("Passwords do not match.");
+ try{
+  const result=await auth.createUserWithEmailAndPassword(email,password);
+  await db.collection("users").doc(result.user.uid).set({name,email,role,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  currentUser=result.user;currentProfile={name,email,role};
+  updateNav();message("Account created successfully! Your dashboard is ready.");showDashboard();
+ }catch(e){message(friendlyError(e))}
 }
-
-// LOGIN
 async function login(){
-try{
-await auth.signInWithEmailAndPassword(
-el("loginEmail").value.trim(),
-el("loginPassword").value
-);
-message("Login successful!");
-showSection("home");
-}catch(e){message(e.message)}
+ const email=el("loginEmail").value.trim(),password=el("loginPassword").value;
+ if(!email||!password)return message("Enter your email and password.");
+ try{await auth.signInWithEmailAndPassword(email,password);message("Login successful!");}
+ catch(e){message(friendlyError(e))}
 }
-
-// LOGOUT
-async function logout(){
-try{
-await auth.signOut();
-message("Logged out.");
-showSection("home");
-}catch(e){message(e.message)}
+async function forgotPassword(){
+ const email=el("loginEmail").value.trim();
+ if(!email)return message("Enter your email first, then select Forgot Password.");
+ try{await auth.sendPasswordResetEmail(email);message("Password reset link sent. Check your email inbox and spam folder.");}
+ catch(e){message(friendlyError(e))}
 }
-
-// AUTH STATE
+async function completeProfile(){
+ if(!currentUser)return message("Please login first.");
+ const name=el("profileName").value.trim(),role=el("profileRole").value;
+ if(!name)return message("Enter your name.");
+ try{
+  await db.collection("users").doc(currentUser.uid).set({name,email:currentUser.email||"",role,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  currentProfile={name,email:currentUser.email||"",role};updateNav();message("Profile saved. Welcome to Swurkif!");showDashboard();
+ }catch(e){message("Profile could not be saved: "+friendlyError(e))}
+}
+function friendlyError(e){
+ const codes={"auth/email-already-in-use":"This email is already registered. Please login.","auth/invalid-email":"Please enter a valid email address.","auth/weak-password":"Choose a stronger password (at least 6 characters).","auth/user-not-found":"No account found with this email.","auth/wrong-password":"Incorrect password.","auth/invalid-credential":"Email or password is incorrect.","auth/too-many-requests":"Too many attempts. Please try again later.","auth/network-request-failed":"Internet connection problem. Please try again."};
+ return codes[e.code]||e.message||"Something went wrong.";
+}
+function updateNav(){
+ const logged=!!currentUser;
+ ["dashboardNav","accountNav","logoutNav"].forEach(id=>el(id).classList.toggle("hidden",!logged));
+ ["registerNav","loginNav"].forEach(id=>el(id).classList.toggle("hidden",logged));
+}
+async function logout(){try{await auth.signOut();currentUser=null;currentProfile=null;updateNav();showSection("home");message("You have logged out.");}catch(e){message(friendlyError(e))}}
 auth.onAuthStateChanged(async user=>{
-currentUser=user;
-currentProfile=null;
-el("dashboardNav").classList.add("hidden");
-el("logoutNav").classList.add("hidden");
-if(!user)return;
-try{
-const doc=await db.collection("users").doc(user.uid).get();
-if(doc.exists){
-currentProfile=doc.data();
-el("dashboardNav").classList.remove("hidden");
-el("logoutNav").classList.remove("hidden");
-}else{
-message("Account profile not found. Contact Admin.");
-}
-}catch(e){message(e.message)}
+ currentUser=user;currentProfile=null;updateNav();
+ if(!user)return;
+ try{
+  const doc=await db.collection("users").doc(user.uid).get();
+  if(doc.exists){currentProfile=doc.data();updateNav();message("Welcome back, "+(currentProfile.name||user.email)+"!");showDashboard();}
+  else{updateNav();el("hero").classList.add("hidden");hideSections();el("completeProfile").classList.remove("hidden");message("Login successful. Complete your profile to continue.");}
+ }catch(e){message("Could not load your profile: "+friendlyError(e))}
 });
-
 function showAccount(){
-if(!currentUser||!currentProfile){
-el("accountName").textContent="Please login first.";
-return;
+ if(!currentUser){el("accountName").textContent="Please login first.";return}
+ el("accountName").textContent="Name: "+(currentProfile?.name||"Not set");
+ el("accountEmail").textContent="Email: "+(currentUser.email||"");
+ el("accountRole").textContent="Role: "+(currentProfile?.role||"Profile incomplete");
 }
-el("accountName").textContent="Name: "+currentProfile.name;
-el("accountEmail").textContent="Email: "+currentProfile.email;
-el("accountRole").textContent="Role: "+currentProfile.role;
-}
-
-// POST JOB
 async function postJob(){
-if(!currentUser||currentProfile?.role!=="Employer")
-return message("Please login with an Employer account.");
-
-const company=el("company").value.trim();
-const title=el("title").value.trim();
-const description=el("description").value.trim();
-const location=el("location").value.trim();
-const type=el("type").value;
-const transactionId=el("transactionId").value.trim();
-
-if(!company||!title||!description||!location||!transactionId)
-return message("Please fill all fields.");
-
-try{
-await db.collection("jobs").add({
-Company:company,
-Description:description,
-Location:location,
-"Owner id":currentUser.uid,
-Status:"Pending",
-Title:title,
-Type:type,
-fee:500,
-paymentMethod:"JazzCash",
-paymentStatus:"Pending",
-transactionId:transactionId,
-createdAt:firebase.firestore.FieldValue.serverTimestamp()
-});
-message("Job submitted. Admin will verify payment.");
-["company","title","description","location","transactionId"].forEach(id=>el(id).value="");
-loadEmployerJobs();
-}catch(e){message("Job submission failed: "+e.message)}
+ if(!currentUser||currentProfile?.role!=="Employer")return message("Please login with an Employer account.");
+ const company=el("company").value.trim(),title=el("title").value.trim(),description=el("description").value.trim(),location=el("location").value.trim(),type=el("type").value,transactionId=el("transactionId").value.trim();
+ if(!company||!title||!description||!location||!transactionId)return message("Please fill all fields.");
+ try{
+  await db.collection("jobs").add({Company:company,Description:description,Location:location,"Owner id":currentUser.uid,Status:"Pending",Title:title,Type:type,fee:500,paymentMethod:"JazzCash",paymentStatus:"Pending",transactionId,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  message("Job submitted. Admin will verify payment.");["company","title","description","location","transactionId"].forEach(id=>el(id).value="");loadEmployerJobs();
+ }catch(e){message("Job submission failed: "+friendlyError(e))}
 }
-
-// LOAD JOBS
 async function loadJobs(){
-const list=el("jobList");
-if(!currentUser){list.innerHTML="<p>Please login to view jobs.</p>";return}
-list.innerHTML="Loading...";
-try{
-const snapshot=await db.collection("jobs").get();
-jobsCache=[];
-snapshot.forEach(doc=>jobsCache.push({id:doc.id,...doc.data()}));
-renderJobs();
-}catch(e){list.textContent="Error: "+e.message}
+ const list=el("jobList");if(!currentUser){list.innerHTML="<p>Please login to view jobs.</p>";return}list.innerHTML="Loading...";
+ try{const snap=await db.collection("jobs").get();jobsCache=[];snap.forEach(d=>jobsCache.push({id:d.id,...d.data()}));renderJobs()}
+ catch(e){list.textContent="Error: "+friendlyError(e)}
 }
-
 function renderJobs(){
-const list=el("jobList");
-const search=el("searchJob").value.toLowerCase();
-const filtered=jobsCache.filter(job=>{
-return job.Status==="Approved"||
-job["Owner id"]===currentUser?.uid||isAdmin();
-}).filter(job=>{
-return [job.Title,job.Company,job.Location].join(" ").toLowerCase().includes(search);
-});
-if(!filtered.length){list.innerHTML="<p>No jobs found.</p>";return}
-list.innerHTML=filtered.map(job=>`
-<div class="job">
-<h3>${escapeHTML(job.Title)}</h3>
-<p><b>Company:</b> ${escapeHTML(job.Company)}</p>
-<p><b>Location:</b> ${escapeHTML(job.Location)}</p>
-<p><b>Type:</b> ${escapeHTML(job.Type)}</p>
-<p>${escapeHTML(job.Description)}</p>
-<span class="tag">${escapeHTML(job.Status)}</span>
-${job.Status==="Approved"&&currentProfile?.role==="jobseeker"
-?`<button class="primary" onclick="applyJob('${job.id}')">Apply Now</button>`:""}
-</div>`).join("");
+ const list=el("jobList"),search=el("searchJob").value.toLowerCase();
+ const filtered=jobsCache.filter(j=>j.Status==="Approved"||j["Owner id"]===currentUser?.uid||isAdmin()).filter(j=>[j.Title,j.Company,j.Location].join(" ").toLowerCase().includes(search));
+ if(!filtered.length){list.innerHTML="<p>No jobs found.</p>";return}
+ list.innerHTML=filtered.map(j=>`<div class="job"><h3>${escapeHTML(j.Title)}</h3><p><b>Company:</b> ${escapeHTML(j.Company)}</p><p><b>Location:</b> ${escapeHTML(j.Location)}</p><p><b>Type:</b> ${escapeHTML(j.Type)}</p><p>${escapeHTML(j.Description)}</p><span class="tag">${escapeHTML(j.Status)}</span>${j.Status==="Approved"&&currentProfile?.role==="jobseeker"?`<button class="primary" onclick="applyJob('${j.id}')">Apply Now</button>`:""}</div>`).join("");
 }
-
-// APPLY
 async function applyJob(jobId){
-if(!currentUser||currentProfile?.role!=="jobseeker")
-return message("Login as Job Seeker first.");
-try{
-const job=jobsCache.find(j=>j.id===jobId);
-if(!job||job.Status!=="Approved")return message("Job unavailable.");
-await db.collection("applications").add({
-userId:currentUser.uid,
-employerId:job["Owner id"],
-jobId,
-jobTitle:job.Title,
-company:job.Company,
-status:"Pending",
-createdAt:firebase.firestore.FieldValue.serverTimestamp()
-});
-message("Application submitted successfully.");
-}catch(e){message("Application failed: "+e.message)}
+ if(!currentUser||currentProfile?.role!=="jobseeker")return message("Login as Job Seeker first.");
+ try{const j=jobsCache.find(x=>x.id===jobId);if(!j||j.Status!=="Approved")return message("Job unavailable.");
+ await db.collection("applications").add({userId:currentUser.uid,employerId:j["Owner id"],jobId,jobTitle:j.Title,company:j.Company,status:"Pending",createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+ message("Application submitted successfully.");loadMyApplications();
+ }catch(e){message("Application failed: "+friendlyError(e))}
 }
-
-// EMPLOYER JOBS
 async function loadEmployerJobs(){
-const box=el("employerJobs");
-box.innerHTML="Loading...";
-try{
-const snap=await db.collection("jobs").where("Owner id","==",currentUser.uid).get();
-if(snap.empty){box.innerHTML="<p>No jobs posted yet.</p>";return}
-box.innerHTML="";
-snap.forEach(doc=>{
-const j=doc.data();
-box.innerHTML+=`<div class="job">
-<h3>${escapeHTML(j.Title)}</h3>
-<p>${escapeHTML(j.Company)}</p>
-<p>Status: ${escapeHTML(j.Status)}</p>
-<p>Payment: ${escapeHTML(j.paymentStatus)}</p>
-</div>`;
-});
-}catch(e){box.textContent=e.message}
+ const box=el("employerJobs");box.innerHTML="Loading...";
+ try{const snap=await db.collection("jobs").where("Owner id","==",currentUser.uid).get();if(snap.empty){box.innerHTML="<p>No jobs posted yet.</p>";return}
+ box.innerHTML="";snap.forEach(d=>{const j=d.data();box.innerHTML+=`<div class="job"><h3>${escapeHTML(j.Title)}</h3><p>${escapeHTML(j.Company)}</p><p>Status: ${escapeHTML(j.Status)}</p><p>Payment: ${escapeHTML(j.paymentStatus||"Not available")}</p></div>`})}
+ catch(e){box.textContent=friendlyError(e)}
 }
-
-// SEEKER APPLICATIONS
 async function loadMyApplications(){
-const box=el("myApplications");
-box.innerHTML="Loading...";
-try{
-const snap=await db.collection("applications").where("userId","==",currentUser.uid).get();
-if(snap.empty){box.innerHTML="<p>No applications yet.</p>";return}
-box.innerHTML="";
-snap.forEach(doc=>{
-const a=doc.data();
-box.innerHTML+=`<div class="job">
-<h3>${escapeHTML(a.jobTitle)}</h3>
-<p>Company: ${escapeHTML(a.company)}</p>
-<p>Status: ${escapeHTML(a.status)}</p>
-</div>`;
-});
-}catch(e){box.textContent=e.message}
+ const box=el("myApplications");box.innerHTML="Loading...";
+ try{const snap=await db.collection("applications").where("userId","==",currentUser.uid).get();if(snap.empty){box.innerHTML="<p>No applications yet.</p>";return}
+ box.innerHTML="";snap.forEach(d=>{const a=d.data();box.innerHTML+=`<div class="job"><h3>${escapeHTML(a.jobTitle)}</h3><p>Company: ${escapeHTML(a.company)}</p><p>Status: ${escapeHTML(a.status)}</p></div>`})}
+ catch(e){box.textContent=friendlyError(e)}
 }
-
-// ADMIN DASHBOARD
 async function loadAdminDashboard(){
-if(!isAdmin())return message("Admin access required.");
-const pending=el("pendingJobs");
-const appsBox=el("adminApplications");
-pending.innerHTML="Loading...";
-appsBox.innerHTML="Loading...";
-try{
-const jobs=await db.collection("jobs").get();
-pending.innerHTML="";
-let found=false;
-jobs.forEach(doc=>{
-const j=doc.data();
-if(j.Status==="Pending"){
-found=true;
-pending.innerHTML+=`<div class="job">
-<h3>${escapeHTML(j.Title)}</h3>
-<p>Company: ${escapeHTML(j.Company)}</p>
-<p>Location: ${escapeHTML(j.Location)}</p>
-<p>Transaction ID: ${escapeHTML(j.transactionId)}</p>
-<p>Fee: Rs. ${escapeHTML(j.fee)}</p>
-<button class="success" onclick="approveJob('${doc.id}')">Verify & Approve</button>
-<button class="danger" onclick="rejectJob('${doc.id}')">Reject</button>
-</div>`;
+ if(!isAdmin())return message("Admin access required.");
+ const pending=el("pendingJobs"),appsBox=el("adminApplications"),usersBox=el("allUsers");pending.innerHTML=appsBox.innerHTML=usersBox.innerHTML="Loading...";
+ try{
+  const [jobsSnap,appsSnap,usersSnap]=await Promise.all([db.collection("jobs").get(),db.collection("applications").get(),db.collection("users").get()]);
+  pending.innerHTML="";let found=false;
+  jobsSnap.forEach(d=>{const j=d.data();if(j.Status==="Pending"){found=true;pending.innerHTML+=`<div class="job"><h3>${escapeHTML(j.Title)}</h3><p>Company: ${escapeHTML(j.Company)}</p><p>Location: ${escapeHTML(j.Location)}</p><p>Transaction ID: ${escapeHTML(j.transactionId)}</p><p>Fee: Rs. ${escapeHTML(j.fee)}</p><button class="success" onclick="approveJob('${d.id}')">Verify & Approve</button> <button class="danger" onclick="rejectJob('${d.id}')">Reject</button></div>`}});
+  if(!found)pending.innerHTML="<p>No pending jobs.</p>";
+  usersBox.innerHTML="";if(usersSnap.empty)usersBox.innerHTML="<p>No users found.</p>";
+  usersSnap.forEach(d=>{const u=d.data();usersBox.innerHTML+=`<div class="job"><b>${escapeHTML(u.name||"No name")}</b><p>${escapeHTML(u.email||"")}</p><p>Role: ${escapeHTML(u.role||"Unknown")}</p></div>`});
+  appsBox.innerHTML="";if(appsSnap.empty)appsBox.innerHTML="<p>No applications yet.</p>";
+  appsSnap.forEach(d=>{const a=d.data();appsBox.innerHTML+=`<div class="job"><h3>${escapeHTML(a.jobTitle)}</h3><p>Company: ${escapeHTML(a.company)}</p><p>Applicant UID: ${escapeHTML(a.userId)}</p><p>Status: ${escapeHTML(a.status)}</p></div>`});
+ }catch(e){pending.textContent="Admin error: "+friendlyError(e)}
 }
-});
-if(!found)pending.innerHTML="<p>No pending jobs.</p>";
-
-const apps=await db.collection("applications").get();
-appsBox.innerHTML="";
-if(apps.empty)appsBox.innerHTML="<p>No applications yet.</p>";
-apps.forEach(doc=>{
-const a=doc.data();
-appsBox.innerHTML+=`<div class="job">
-<h3>${escapeHTML(a.jobTitle)}</h3>
-<p>Company: ${escapeHTML(a.company)}</p>
-<p>Applicant UID: ${escapeHTML(a.userId)}</p>
-<p>Status: ${escapeHTML(a.status)}</p>
-</div>`;
-});
-}catch(e){pending.textContent="Admin error: "+e.message}
-}
-
-// APPROVE
 async function approveJob(id){
-if(!isAdmin())return message("Admin access required.");
-if(!confirm("Have you verified receipt of Rs. 500 in JazzCash?"))return;
-try{
-await db.collection("jobs").doc(id).update({
-Status:"Approved",
-paymentStatus:"Paid",
-approvedAt:firebase.firestore.FieldValue.serverTimestamp()
-});
-message("Job approved.");
-loadAdminDashboard();
-}catch(e){message(e.message)}
+ if(!isAdmin())return message("Admin access required.");
+ if(!confirm("Have you verified receipt of Rs. 500 in JazzCash?"))return;
+ try{await db.collection("jobs").doc(id).update({Status:"Approved",paymentStatus:"Paid",approvedAt:firebase.firestore.FieldValue.serverTimestamp()});message("Job approved.");loadAdminDashboard()}
+ catch(e){message(friendlyError(e))}
 }
-
-// REJECT
 async function rejectJob(id){
-if(!isAdmin())return message("Admin access required.");
-if(!confirm("Reject this job?"))return;
-try{
-await db.collection("jobs").doc(id).update({Status:"Rejected"});
-message("Job rejected.");
-loadAdminDashboard();
-}catch(e){message(e.message)}
+ if(!isAdmin())return message("Admin access required.");if(!confirm("Reject this job?"))return;
+ try{await db.collection("jobs").doc(id).update({Status:"Rejected"});message("Job rejected.");loadAdminDashboard()}
+ catch(e){message(friendlyError(e))}
 }
-
 showSection("home");
 </script>
 </body>
