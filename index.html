@@ -3,228 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swurkif - Find Your Dream Job</title>
-
+<title>Swurkif | Find Your Opportunity</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
-}
-header {
-  background: #102b50;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-header h1 {
-  margin: 0;
-  font-size: 30px;
-}
-nav {
-  background: #183e6b;
-  padding: 12px;
-  text-align: center;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-.container {
-  max-width: 950px;
-  margin: auto;
-  padding: 20px;
-}
-.hero {
-  background: #dcecff;
-  padding: 35px 20px;
-  text-align: center;
-  border-radius: 12px;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-}
-button {
-  background: #1266c5;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 5px 3px;
-}
-button:hover {
-  background: #084b94;
-}
-.card {
-  background: white;
-  padding: 18px;
-  margin: 15px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px #00000012;
-}
-.card h3 {
-  color: #1266c5;
-  margin-top: 0;
-}
-section {
-  margin-top: 30px;
-}
-#authBox, #postBox {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-#message, #jobMessage {
-  color: #1266c5;
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-footer {
-  background: #102b50;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-}
-.small {
-  color: #666;
-  font-size: 13px;
-}
-.hidden {
-  display: none;
-}
+:root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--muted:#667085;--green:#16834a;--red:#c0392b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
+header{background:linear-gradient(120deg,#102b50,#1769c2);color:#fff;padding:24px 16px;text-align:center}header h1{font-size:34px;margin:0}header p{margin:8px 0 0}
+nav{background:#0c2341;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px}nav a{color:#fff;text-decoration:none;padding:9px 12px;border-radius:7px}nav a:hover{background:#24476f}
+.container{max-width:1050px;margin:auto;padding:18px}.hero,.panel,.card{background:#fff;border-radius:13px;padding:20px;margin:16px 0;box-shadow:0 3px 14px #102b5010}
+.hero{text-align:center;background:linear-gradient(120deg,#e8f2ff,#fff)}.hero h2{font-size:30px;margin:4px 0 10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;background:#fff}textarea{min-height:100px;resize:vertical}
+button,.button{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:11px 16px;margin:5px 4px 5px 0;cursor:pointer;font-weight:600;text-decoration:none}button:hover,.button:hover{filter:brightness(.92)}
+button.secondary{background:#526579}button.danger{background:var(--red)}button.success{background:var(--green)}button:disabled{opacity:.55;cursor:not-allowed}
+h2{color:var(--navy);margin-top:4px}h3{margin:4px 0 10px;color:var(--navy)}.small,.muted{font-size:13px;color:var(--muted)}
+.notice{padding:12px;border-radius:8px;background:#edf5ff;margin:10px 0;overflow-wrap:anywhere}.error{background:#fff0ef;color:#9d251c}.ok{background:#eaf8ef;color:#17683a}
+.hidden{display:none!important}.pill{display:inline-block;padding:4px 9px;border-radius:20px;background:#e8f2ff;color:#15569b;font-size:12px;font-weight:bold}
+.job-card{border:1px solid #e3eaf2}.job-card p{margin:7px 0}.actions{display:flex;gap:6px;flex-wrap:wrap}hr{border:0;border-top:1px solid #e7edf4;margin:16px 0}
+footer{text-align:center;background:#102b50;color:#fff;padding:22px;margin-top:30px}label{font-weight:600;font-size:14px}#message{white-space:pre-wrap}
+@media(max-width:600px){header h1{font-size:28px}.container{padding:12px}.hero h2{font-size:24px}nav{gap:2px}nav a{padding:8px;font-size:14px}}
 </style>
 </head>
-
 <body>
+<header><h1>Swurkif</h1><p>Find Your Opportunity. Build Your Future.</p></header>
+<nav><a href="#home">Home</a><a href="#jobs">Find Jobs</a><a href="#post">Post a Job</a><a href="#dashboard">Dashboard</a><a href="#account">Account</a></nav>
+<main class="container">
+<section id="home" class="hero"><h2>Your next opportunity starts here</h2><p>Discover jobs, connect with employers and take the next step in your career.</p><a class="button" href="#jobs">Explore Jobs</a><a class="button secondary" href="#post">Hire Talent</a></section>
 
-<header>
-  <h1>Swurkif</h1>
-  <p>Find Your Dream Job</p>
-</header>
-
-<nav>
-  <a href="#home">Home</a>
-  <a href="#jobs">Find Jobs</a>
-  <a href="#post">Post a Job</a>
-  <a href="#account">Account</a>
-</nav>
-
-<div class="container">
-
-<section id="home" class="hero">
-  <h2>Welcome to Swurkif</h2>
-  <p>Find jobs and connect with opportunities.</p>
-  <a href="#jobs"><button>Find Jobs</button></a>
+<section id="account" class="panel">
+<h2>Account</h2>
+<div id="loggedOut"><div class="grid">
+<div><h3>Create an account</h3><label>Full name</label><input id="signupName" placeholder="Your full name"><label>Email</label><input id="signupEmail" type="email" placeholder="Email address"><label>Password</label><input id="signupPassword" type="password" placeholder="At least 6 characters"><label>Account type</label><select id="signupRole"><option value="jobSeeker">Job Seeker (free)</option><option value="employer">Employer</option></select><button id="signupBtn">Create Account</button></div>
+<div><h3>Login</h3><label>Email</label><input id="loginEmail" type="email" placeholder="Email address"><label>Password</label><input id="loginPassword" type="password" placeholder="Password"><button id="loginBtn">Login</button></div>
+</div></div>
+<div id="loggedIn" class="hidden"><p id="welcomeText"></p><p id="roleText" class="pill"></p><button id="logoutBtn" class="secondary">Logout</button></div>
+<div id="profileSetup" class="notice hidden"><strong>Complete your Swurkif profile</strong><p class="small">Your existing login has no Swurkif profile yet. Choose your account type once.</p><label>Full name</label><input id="profileName" placeholder="Your full name"><label>Account type</label><select id="profileRole"><option value="jobSeeker">Job Seeker (free)</option><option value="employer">Employer</option></select><button id="saveProfileBtn">Save Profile</button></div>
+<div id="message" class="notice hidden"></div>
 </section>
 
-<section id="jobs">
-  <h2>Find Jobs</h2>
-  <input type="text" id="searchInput"
-    placeholder="Search by job title or location">
-  <button id="searchBtn">Search Jobs</button>
-  <div id="jobList"></div>
+<section id="jobs" class="panel"><h2>Find Jobs</h2><input id="searchInput" placeholder="Search job title, company or location"><div id="jobList" class="grid"></div></section>
+
+<section id="post" class="panel"><h2>Post a Job</h2><div class="notice"><strong>Employer posting fee: Rs. 500 per job.</strong><br>JazzCash: <strong>03027373872</strong><br>Send Rs. 500, then enter the transaction ID. Your job will appear publicly only after admin approval.</div>
+<div id="jobFormNotice" class="muted">Login with an Employer account to submit a job.</div>
+<form id="jobForm" class="hidden"><label>Company name</label><input id="company" required><label>Job title</label><input id="jobTitle" required><label>Job location</label><input id="jobLocation" placeholder="City or Remote" required><label>Job type</label><select id="jobType" required><option value="">Select job type</option><option>Full Time</option><option>Part Time</option><option>Contract</option><option>Remote</option><option>Internship</option></select><label>Job description</label><textarea id="jobDescription" required></textarea><label>JazzCash transaction ID</label><input id="transactionId" required placeholder="Enter transaction ID after sending Rs. 500"><button type="submit">Submit Job for Approval</button></form>
 </section>
 
-<section id="post">
-  <h2>Post a Job</h2>
+<section id="dashboard" class="panel"><h2>My Dashboard</h2><div id="dashboardNotice" class="muted">Login to view your dashboard.</div><div id="myJobs"></div><div id="myApplications"></div><div id="employerApplications"></div>
+<div id="adminPanel" class="hidden"><hr><h2>Admin Panel — Payment & Job Approval</h2><p class="small">Check the transaction in your own JazzCash account before approving. The website does not verify payments automatically.</p><div id="adminJobs"></div></div></section>
 
-  <div id="postBox">
-    <p id="postNotice">Please login to post a job.</p>
-
-    <form id="jobForm">
-      <input id="company" placeholder="Company Name" required>
-      <input id="jobTitle" placeholder="Job Title" required>
-      <input id="jobLocation" placeholder="Job Location" required>
-
-      <select id="jobType" required>
-        <option value="">Select Job Type</option>
-        <option>Full Time</option>
-        <option>Part Time</option>
-        <option>Remote</option>
-      </select>
-
-      <textarea id="jobDescription"
-        placeholder="Job Description" required></textarea>
-
-      <button type="submit">Post Job</button>
-    </form>
-
-    <p id="jobMessage"></p>
-  </div>
-</section>
-
-<section id="account">
-  <h2>My Account</h2>
-
-  <div id="authBox">
-    <div id="loggedOut">
-      <h3>Create Account / Login</h3>
-      <input type="email" id="email"
-        placeholder="Email Address">
-      <input type="password" id="password"
-        placeholder="Password (at least 6 characters)">
-
-      <button id="signupBtn">Create Account</button>
-      <button id="loginBtn">Login</button>
-    </div>
-
-    <div id="loggedIn" class="hidden">
-      <h3>Welcome to Swurkif!</h3>
-      <p id="userEmail"></p>
-      <button id="logoutBtn">Logout</button>
-    </div>
-
-    <p id="message"></p>
-  </div>
-</section>
-
-<section>
-  <h2>About Swurkif</h2>
-  <p>
-    Swurkif is a job platform designed to connect
-    job seekers with employment opportunities.
-  </p>
-</section>
-
-</div>
-
-<footer>
-  <p>© 2026 Swurkif. All Rights Reserved.</p>
-</footer>
+<section class="panel"><h2>How Swurkif works</h2><div class="grid"><div><h3>For job seekers</h3><p>Create a free account, search approved jobs and apply without a fee.</p></div><div><h3>For employers</h3><p>Submit a job with the Rs. 500 JazzCash transaction ID. Your listing goes live after verification.</p></div><div><h3>For trust</h3><p>Listings are reviewed manually before publication. Swurkif should not promise jobs or collect fees from job seekers.</p></div></div></section>
+</main><footer>© 2026 Swurkif. All rights reserved.</footer>
 
 <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, where, getDocs, doc, getDoc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
-} from
-"https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  onSnapshot
-} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
-  //Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
   authDomain: "swurkif.firebaseapp.com",
@@ -233,230 +65,152 @@ const firebaseConfig = {
   messagingSenderId: "250612764204",
   appId: "1:250612764204:web:43b30828262efcea6f4b89"
 };
-
-// Initialize Firebase
+const ADMIN_UID = "I599sebYSIUPTFuqVdYiVWlCc2q2";
+const JOB_FEE = 500;
+const JAZZCASH_NUMBER = "03027373872";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-  const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const message = document.getElementById("message");
+const $ = id => document.getElementById(id);
+let currentProfile = null;
+let allPublicJobs = [];
+let stopJobsListener = null;
 
-function showMessage(text) {
-  message.textContent = text;
+function isAdmin(){return !!auth.currentUser && auth.currentUser.uid === ADMIN_UID;}
+function showMessage(text,isError=false){$("message").textContent=text;$("message").className="notice "+(isError?"error":"ok");$("message").classList.remove("hidden");}
+function updateAccountUI(user){
+  $("loggedOut").classList.toggle("hidden",!!user);
+  $("loggedIn").classList.toggle("hidden",!user);
+  $("profileSetup").classList.add("hidden");
+  $("jobForm").classList.add("hidden");
+  $("jobFormNotice").textContent="Login with an Employer account to submit a job.";
+  if(user){$("welcomeText").textContent="Logged in: "+(user.email||"");$("roleText").textContent=isAdmin()?"Swurkif Admin":(currentProfile?.role==="employer"?"Employer":currentProfile?.role==="jobSeeker"?"Job Seeker":"Profile setup required");
+    if(currentProfile?.role==="employer"||isAdmin()){$("jobForm").classList.remove("hidden");$("jobFormNotice").textContent="Submit your job and JazzCash transaction ID. Admin approval is required.";}
+    if(!currentProfile&&!isAdmin())$("profileSetup").classList.remove("hidden");
+  }
 }
-
-// Create Account
-document.getElementById("signupBtn")
-.addEventListener("click", async () => {
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-
-  if (!email || !password) {
-    showMessage("Please enter email and password.");
-    return;
-  }
-
-  try {
-    await createUserWithEmailAndPassword(
-      auth, email, password
-    );
-    showMessage("Account created successfully!");
-  } catch (error) {
-    showMessage(error.message);
-  }
+$("signupBtn").addEventListener("click",async()=>{
+  const name=$("signupName").value.trim(),email=$("signupEmail").value.trim(),password=$("signupPassword").value,role=$("signupRole").value;
+  if(!name||!email||password.length<6)return showMessage("Enter your name, valid email and password of at least 6 characters.",true);
+  try{const result=await createUserWithEmailAndPassword(auth,email,password);await setDoc(doc(db,"users",result.user.uid),{name,email,role,createdAt:serverTimestamp()});currentProfile={name,email,role};updateAccountUI(result.user);showMessage("Account created successfully.");}
+  catch(e){showMessage(e.message,true);}
+});
+$("loginBtn").addEventListener("click",async()=>{try{await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);}catch(e){showMessage(e.message,true);}});
+$("logoutBtn").addEventListener("click",async()=>{try{await signOut(auth);showMessage("You are logged out.");}catch(e){showMessage(e.message,true);}});
+$("saveProfileBtn").addEventListener("click",async()=>{
+  if(!auth.currentUser||isAdmin())return;
+  const name=$("profileName").value.trim(),role=$("profileRole").value;
+  if(!name)return showMessage("Please enter your full name.",true);
+  try{await setDoc(doc(db,"users",auth.currentUser.uid),{name,email:auth.currentUser.email||"",role,createdAt:serverTimestamp()});currentProfile={name,email:auth.currentUser.email||"",role};updateAccountUI(auth.currentUser);await refreshDashboard();showMessage("Profile saved.");}
+  catch(e){showMessage(e.message,true);}
 });
 
-// Login
-document.getElementById("loginBtn")
-.addEventListener("click", async () => {
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-
-  if (!email || !password) {
-    showMessage("Please enter email and password.");
-    return;
-  }
-
-  try {
-    await signInWithEmailAndPassword(
-      auth, email, password
-    );
-    showMessage("Login successful!");
-  } catch (error) {
-    showMessage(error.message);
-  }
-});
-
-// Logout
-document.getElementById("logoutBtn")
-.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    showMessage("You are logged out.");
-  } catch (error) {
-    showMessage(error.message);
-  }
-});
-
-// Check Login Status
-onAuthStateChanged(auth, (user) => {
-  const loggedOut = document.getElementById("loggedOut");
-  const loggedIn = document.getElementById("loggedIn");
-  const userEmail = document.getElementById("userEmail");
-  const jobForm = document.getElementById("jobForm");
-  const postNotice = document.getElementById("postNotice");
-
-  if (user) {
-    loggedOut.classList.add("hidden");
-    loggedIn.classList.remove("hidden");
-    userEmail.textContent = user.email;
-    jobForm.classList.remove("hidden");
-    postNotice.textContent = "You can post a job.";
-  } else {
-    loggedOut.classList.remove("hidden");
-    loggedIn.classList.add("hidden");
-    jobForm.classList.add("hidden");
-    postNotice.textContent = "Please login to post a job.";
-  }
-});
-
-// Sample Jobs
-let jobs = [
-  {
-    company: "Swurkif",
-    title: "Data Entry Operator",
-    location: "Bahawalpur",
-    type: "Full Time",
-    description: "Data entry and computer work."
-  },
-  {
-    company: "ABC Company",
-    title: "Virtual Assistant",
-    location: "Remote",
-    type: "Remote",
-    description: "Online office support."
-  },
-  {
-    company: "Local Company",
-    title: "Electrician",
-    location: "Multan",
-    type: "Full Time",
-    description: "Electrical installation and maintenance."
-  },
-  {
-    company: "Support Services",
-    title: "Customer Support",
-    location: "Lahore",
-    type: "Part Time",
-    description: "Customer service and communication."
-  }
-];
-
-const jobList = document.getElementById("jobList");
-
-function displayJobs(list) {
-  jobList.replaceChildren();
-
-  if (list.length === 0) {
-    jobList.textContent = "No jobs found.";
-    return;
-  }
-
-  list.forEach((job) => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const title = document.createElement("h3");
-    title.textContent = job.title;
-
-    const company = document.createElement("p");
-    company.textContent = "Company: " + job.company;
-
-    const location = document.createElement("p");
-    location.textContent = "Location: " + job.location;
-
-    const type = document.createElement("p");
-    type.textContent = "Type: " + job.type;
-
-    const description = document.createElement("p");
-    description.textContent = job.description;
-
-    const apply = document.createElement("button");
-    apply.textContent = "Apply Now";
-    apply.addEventListener("click", () => {
-      alert("Please contact the employer directly for this job.");
+function renderJobs(){
+  const term=$("searchInput").value.trim().toLowerCase();
+  const list=allPublicJobs.filter(j=>[j.title,j.company,j.location,j.type,j.description].some(v=>String(v||"").toLowerCase().includes(term)));
+  const host=$("jobList");host.replaceChildren();
+  if(!list.length){host.textContent="No approved jobs found.";return;}
+  list.forEach(job=>{
+    const card=document.createElement("article");card.className="card job-card";
+    const title=document.createElement("h3");title.textContent=job.title||"Job";
+    const details=document.createElement("p");details.textContent=(job.company||"")+" • "+(job.location||"")+" • "+(job.type||"");
+    const desc=document.createElement("p");desc.textContent=job.description||"";
+    const btn=document.createElement("button");btn.textContent="Apply Now";
+    btn.addEventListener("click",async()=>{
+      const user=auth.currentUser;if(!user)return alert("Please login as a Job Seeker first.");
+      if(currentProfile?.role!=="jobSeeker"&&!isAdmin())return alert("Only Job Seeker accounts can apply.");
+      const applicantName=currentProfile?.name||prompt("Enter your full name:");if(!applicantName)return;
+      try{
+        await addDoc(collection(db,"applications"),{jobId:job.id,jobTitle:job.title,company:job.company,employerId:job.ownerId,userId:user.uid,applicantName,applicantEmail:user.email||"",status:"Pending",createdAt:serverTimestamp()});
+        alert("Application submitted successfully.");await loadMyApplications();
+      }catch(e){alert(e.message);}
     });
-
-    card.append(title, company, location, type, description, apply);
-    jobList.appendChild(card);
+    card.append(title,details,desc,btn);host.appendChild(card);
   });
 }
-
-displayJobs(jobs);
-onSnapshot(collection(db, "jobs"), (snapshot) => {
-  const savedJobs = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id
-  }));
-
-  const sampleJobs = jobs.filter((job) => !job.id);
-
-  jobs = [...savedJobs, ...sampleJobs];
-  displayJobs(jobs);
-});
-  // Search Jobs
-function searchJobs() {
-  const term = document.getElementById("searchInput")
-    .value.trim().toLowerCase();
-
-  const filtered = jobs.filter((job) =>
-    job.title.toLowerCase().includes(term) ||
-    job.location.toLowerCase().includes(term) ||
-    job.company.toLowerCase().includes(term)
-  );
-
-  displayJobs(filtered);
+$("searchInput").addEventListener("input",renderJobs);
+function listenPublicJobs(){
+  if(stopJobsListener)stopJobsListener();
+  stopJobsListener=onSnapshot(query(collection(db,"jobs"),where("status","==","approved")),snap=>{allPublicJobs=snap.docs.map(d=>({id:d.id,...d.data()}));renderJobs();},e=>showMessage("Could not load jobs: "+e.message,true));
 }
-
-document.getElementById("searchBtn")
-.addEventListener("click", searchJobs);
-
-document.getElementById("searchInput")
-.addEventListener("input", searchJobs);
-
-// Post Job
-document.getElementById("jobForm")
-.addEventListener("submit", async (event) => {
+async function loadMyJobs(){
+  if(!auth.currentUser||currentProfile?.role!=="employer")return;
+  const snap=await getDocs(query(collection(db,"jobs"),where("ownerId","==",auth.currentUser.uid)));
+  const host=$("myJobs");host.replaceChildren();const h=document.createElement("h3");h.textContent="My Posted Jobs";host.appendChild(h);
+  if(snap.empty){host.append("You have not submitted any jobs yet.");return;}
+  snap.forEach(d=>{const j=d.data(),p=document.createElement("p");p.textContent=`${j.title} — Job: ${j.status} — Payment: ${j.paymentStatus}`;host.appendChild(p);});
+}
+async function loadMyApplications(){
+  if(!auth.currentUser||currentProfile?.role!=="jobSeeker")return;
+  const snap=await getDocs(query(collection(db,"applications"),where("userId","==",auth.currentUser.uid)));
+  const host=$("myApplications");host.replaceChildren();const h=document.createElement("h3");h.textContent="My Applications";host.appendChild(h);
+  if(snap.empty){host.append("You have not applied for any jobs yet.");return;}
+  snap.forEach(d=>{const a=d.data(),p=document.createElement("p");p.textContent=`${a.jobTitle} — ${a.company} — ${a.status}`;host.appendChild(p);});
+}
+async function loadEmployerApplications(){
+  if(!auth.currentUser||currentProfile?.role!=="employer")return;
+  const host=$("employerApplications");host.replaceChildren();const h=document.createElement("h3");h.textContent="Applications for My Jobs";host.appendChild(h);
+  const snap=await getDocs(query(collection(db,"applications"),where("employerId","==",auth.currentUser.uid)));
+  if(snap.empty){host.append("No applications received yet.");return;}
+  snap.forEach(d=>{
+    const a=d.data(),box=document.createElement("div");box.className="card";
+    const p=document.createElement("p");p.textContent=`${a.applicantName} (${a.applicantEmail}) — ${a.jobTitle} — ${a.status}`;
+    const accept=document.createElement("button");accept.className="success";accept.textContent="Accept";
+    const reject=document.createElement("button");reject.className="danger";reject.textContent="Reject";
+    accept.addEventListener("click",()=>changeApplicationStatus(d.id,"Accepted"));
+    reject.addEventListener("click",()=>changeApplicationStatus(d.id,"Rejected"));
+    box.append(p,accept,reject);host.appendChild(box);
+  });
+}
+async function changeApplicationStatus(id,status){try{await updateDoc(doc(db,"applications",id),{status});await loadEmployerApplications();}catch(e){showMessage(e.message,true);}}
+async function loadAdminJobs(){
+  if(!isAdmin())return;
+  const host=$("adminJobs");host.replaceChildren();
+  const snap=await getDocs(query(collection(db,"jobs"),where("status","==","pending")));
+  if(snap.empty){host.textContent="No pending jobs.";return;}
+  snap.forEach(d=>{
+    const j=d.data(),box=document.createElement("div");box.className="card";
+    const p=document.createElement("p");p.textContent=`${j.title} — ${j.company} — ${j.location} | Rs. ${j.fee} | JazzCash Txn: ${j.transactionId} | Employer UID: ${j.ownerId}`;
+    const approve=document.createElement("button");approve.className="success";approve.textContent="Verify payment & approve";
+    const reject=document.createElement("button");reject.className="danger";reject.textContent="Reject";
+    approve.addEventListener("click",()=>adminSetJobStatus(d.id,"approved","verified"));
+    reject.addEventListener("click",()=>adminSetJobStatus(d.id,"rejected","rejected"));
+    box.append(p,approve,reject);host.appendChild(box);
+  });
+}
+async function adminSetJobStatus(id,status,paymentStatus){
+  if(!isAdmin())return alert("Admin only.");
+  try{await updateDoc(doc(db,"jobs",id),{status,paymentStatus,reviewedAt:serverTimestamp()});await loadAdminJobs();showMessage("Job status updated.");}
+  catch(e){showMessage(e.message,true);}
+}
+$("jobForm").addEventListener("submit",async event=>{
   event.preventDefault();
-
-  if (!auth.currentUser) {
-    document.getElementById("jobMessage").textContent =
-      "Please login first.";
-    return;
-  }
-
-  const newJob = {
-    company: document.getElementById("company").value.trim(),
-    title: document.getElementById("jobTitle").value.trim(),
-    location: document.getElementById("jobLocation").value.trim(),
-    type: document.getElementById("jobType").value,
-    description: document.getElementById("jobDescription").value.trim()
-  };
-
-  try {
-    await addDoc(collection(db, "jobs"), newJob);
-    event.target.reset();
-
-    document.getElementById("jobMessage").textContent =
-      "Job posted successfully!";
-  } catch (error) {
-    document.getElementById("jobMessage").textContent =
-      error.message;
-  }
+  if(!auth.currentUser||(currentProfile?.role!=="employer"&&!isAdmin()))return showMessage("Login with an Employer account first.",true);
+  const transactionId=$("transactionId").value.trim();if(!transactionId)return showMessage("Enter the JazzCash transaction ID.",true);
+  const newJob={ownerId:auth.currentUser.uid,company:$("company").value.trim(),title:$("jobTitle").value.trim(),location:$("jobLocation").value.trim(),type:$("jobType").value,description:$("jobDescription").value.trim(),fee:JOB_FEE,paymentMethod:"JazzCash",paymentNumber:JAZZCASH_NUMBER,transactionId,paymentStatus:"pending",status:"pending",createdAt:serverTimestamp()};
+  try{await addDoc(collection(db,"jobs"),newJob);event.target.reset();showMessage("Job submitted. It will be published after JazzCash payment verification by Swurkif admin.");await loadMyJobs();if(isAdmin())await loadAdminJobs();}
+  catch(e){showMessage(e.message,true);}
 });
-
+async function refreshDashboard(){
+  $("myJobs").replaceChildren();$("myApplications").replaceChildren();$("employerApplications").replaceChildren();
+  if(currentProfile?.role==="employer"){await loadMyJobs();await loadEmployerApplications();}
+  if(currentProfile?.role==="jobSeeker")await loadMyApplications();
+  if(isAdmin())await loadAdminJobs();
+}
+onAuthStateChanged(auth,async user=>{
+  currentProfile=null;updateAccountUI(user);
+  $("dashboardNotice").textContent=user?"Loading your dashboard...":"Login to view your dashboard.";
+  $("myJobs").replaceChildren();$("myApplications").replaceChildren();$("employerApplications").replaceChildren();
+  $("adminPanel").classList.toggle("hidden",!isAdmin());
+  if(!user){updateAccountUI(null);return;}
+  try{
+    if(!isAdmin()){const profileSnap=await getDoc(doc(db,"users",user.uid));currentProfile=profileSnap.exists()?profileSnap.data():null;}
+    updateAccountUI(user);
+    if(!currentProfile&&!isAdmin()){$("dashboardNotice").textContent="Please complete your profile above.";return;}
+    $("dashboardNotice").textContent="Welcome to your Swurkif dashboard.";await refreshDashboard();
+  }catch(e){showMessage(e.message,true);}
+});
+listenPublicJobs();
 </script>
-
 </body>
 </html>
