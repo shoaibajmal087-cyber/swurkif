@@ -218,8 +218,13 @@ import {
   onAuthStateChanged
 } from
 "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-
-// Firebase Configuration
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+  //Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
   authDomain: "swurkif.firebaseapp.com",
@@ -232,8 +237,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-const emailInput = document.getElementById("email");
+const db = getFirestore(app);
+  const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const message = document.getElementById("message");
 
@@ -389,8 +394,18 @@ function displayJobs(list) {
 }
 
 displayJobs(jobs);
+onSnapshot(collection(db, "jobs"), (snapshot) => {
+  const savedJobs = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id
+  }));
 
-// Search Jobs
+  const sampleJobs = jobs.filter((job) => !job.id);
+
+  jobs = [...savedJobs, ...sampleJobs];
+  displayJobs(jobs);
+});
+  // Search Jobs
 function searchJobs() {
   const term = document.getElementById("searchInput")
     .value.trim().toLowerCase();
@@ -412,7 +427,7 @@ document.getElementById("searchInput")
 
 // Post Job
 document.getElementById("jobForm")
-.addEventListener("submit", (event) => {
+.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!auth.currentUser) {
@@ -429,12 +444,16 @@ document.getElementById("jobForm")
     description: document.getElementById("jobDescription").value.trim()
   };
 
-  jobs.unshift(newJob);
-  displayJobs(jobs);
-  event.target.reset();
+  try {
+    await addDoc(collection(db, "jobs"), newJob);
+    event.target.reset();
 
-  document.getElementById("jobMessage").textContent =
-    "Job added in this browser. Database saving will be added next.";
+    document.getElementById("jobMessage").textContent =
+      "Job posted successfully!";
+  } catch (error) {
+    document.getElementById("jobMessage").textContent =
+      error.message;
+  }
 });
 
 </script>
