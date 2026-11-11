@@ -39,8 +39,19 @@ section{padding:35px 5%}
 </style>
 </head>
 <body>
+<div id="auth-section">
+  <h2>Welcome to Swurkif</h2>
+  <h3>Create Account</h3>
 
-<header>
+  <input type="email" id="email" placeholder="Enter your Email">
+
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <button onclick="signup()">Create Account</button>
+  <button onclick="login()">Login</button>
+
+  <p id="message"></p>
+</div><header>
 <div class="logo">Swurkif</div>
 <nav>
 <a href="#home">Home</a>
