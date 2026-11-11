@@ -3,233 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swurkif - Find Your Future Job</title>
+<title>Swurkif - Find Your Dream Job</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
-header{background:#fff;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px #00000010}
-.logo{font-size:27px;font-weight:bold;color:#1769e0}
-nav a{margin-left:20px;text-decoration:none;color:#26344b;font-weight:600}
-.hero{background:linear-gradient(120deg,#102c59,#1769e0);color:white;text-align:center;padding:75px 20px}
-.hero h1{font-size:42px;margin:0 0 15px}
-.hero p{font-size:17px;color:#e1eaff}
-.search{background:white;max-width:750px;margin:30px auto 0;padding:10px;border-radius:12px;display:flex;gap:8px}
-.search input{flex:1;min-width:0;border:0;padding:13px;font-size:15px;outline:none}
-button{background:#1769e0;color:white;border:0;padding:13px 20px;border-radius:8px;cursor:pointer;font-weight:bold}
-section{padding:45px 7%}
-h2{font-size:28px}
-.jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.job{background:white;padding:22px;border-radius:12px;box-shadow:0 3px 15px #0000000b}
-.job h3{margin-top:0;color:#173b70}
-.tag{display:inline-block;background:#eaf2ff;color:#1769e0;padding:6px 10px;border-radius:20px;font-size:12px}
-.job p{color:#64748b}
-.job button{width:100%;margin-top:10px}
-.post{background:white;border-radius:14px;padding:28px;max-width:650px;margin:auto}
-.post input,.post select,.post textarea{width:100%;padding:13px;margin:8px 0 14px;border:1px solid #d7deea;border-radius:8px;font-size:15px}
-.post button{width:100%}
-.about{text-align:center;background:#eaf2ff}
-footer{text-align:center;background:#102c59;color:white;padding:25px}
-@media(max-width:600px){
-header{padding:15px 5%;flex-wrap:wrap;gap:12px}
-nav a{margin-left:8px;font-size:13px}
-.hero h1{font-size:30px}
-.search{flex-direction:column}
-section{padding:35px 5%}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
+header {
+  background: #102b50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+nav {
+  background: #183e6b;
+  padding: 12px;
+  text-align: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 20px;
+}
+.hero {
+  background: #dcecff;
+  padding: 35px 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+button {
+  background: #1266c5;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 5px 3px;
+}
+button:hover {
+  background: #084b94;
+}
+.card {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #00000012;
+}
+.card h3 {
+  color: #1266c5;
+  margin-top: 0;
+}
+section {
+  margin-top: 30px;
+}
+#authBox, #postBox {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+#message, #jobMessage {
+  color: #1266c5;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+footer {
+  background: #102b50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+.small {
+  color: #666;
+  font-size: 13px;
+}
+.hidden {
+  display: none;
 }
 </style>
 </head>
+
 <body>
-<div id="auth-section">
-  <h2>Welcome to Swurkif</h2>
-  <h3>Create Account</h3>
 
-  <input type="email" id="email" placeholder="Enter your Email">
-
-  <input type="password" id="password" placeholder="Enter Password">
-
-  <button onclick="signup()">Create Account</button>
-  <button onclick="login()">Login</button>
-
-  <p id="message"></p>
-</div><header>
-<div class="logo">Swurkif</div>
-<nav>
-<a href="#home">Home</a>
-<a href="#jobs">Find Jobs</a>
-<a href="#post">Post a Job</a>
-<a href="#about">About</a>
-</nav>
+<header>
+  <h1>Swurkif</h1>
+  <p>Find Your Dream Job</p>
 </header>
 
-<div class="hero" id="home">
-<h1>Find Your Dream Job</h1>
-<p>Discover opportunities. Build your future with Swurkif.</p>
-<div class="search">
-<input id="searchInput" type="text" placeholder="Job title or keyword...">
-<button onclick="searchJobs()">Search Jobs</button>
-</div>
-</div>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#jobs">Find Jobs</a>
+  <a href="#post">Post a Job</a>
+  <a href="#account">Account</a>
+</nav>
+
+<div class="container">
+
+<section id="home" class="hero">
+  <h2>Welcome to Swurkif</h2>
+  <p>Find jobs and connect with opportunities.</p>
+  <a href="#jobs"><button>Find Jobs</button></a>
+</section>
 
 <section id="jobs">
-<h2>Latest Job Opportunities</h2>
-<p>Explore opportunities and take your next career step.</p>
-<div class="jobs" id="jobList">
-<div class="job">
-<span class="tag">Full Time</span>
-<h3>Data Entry Operator</h3>
-<p>Office Administration</p>
-<p>Location: Pakistan</p>
-<p>Salary: Negotiable</p>
-<button onclick="applyJob('Data Entry Operator')">Apply Now</button>
-</div>
-<div class="job">
-<span class="tag">Part Time</span>
-<h3>Virtual Assistant</h3>
-<p>Online Work</p>
-<p>Location: Remote</p>
-<p>Salary: Negotiable</p>
-<button onclick="applyJob('Virtual Assistant')">Apply Now</button>
-</div>
-<div class="job">
-<span class="tag">Full Time</span>
-<h3>Electrician</h3>
-<p>Electrical Services</p>
-<p>Location: Pakistan</p>
-<p>Salary: Negotiable</p>
-<button onclick="applyJob('Electrician')">Apply Now</button>
-</div>
-<div class="job">
-<span class="tag">Remote</span>
-<h3>Customer Support</h3>
-<p>Customer Service</p>
-<p>Location: Remote</p>
-<p>Salary: Negotiable</p>
-<button onclick="applyJob('Customer Support')">Apply Now</button>
-</div>
-</div>
-<p id="noResults" style="display:none">No matching jobs found.</p>
+  <h2>Find Jobs</h2>
+  <input type="text" id="searchInput"
+    placeholder="Search by job title or location">
+  <button id="searchBtn">Search Jobs</button>
+  <div id="jobList"></div>
 </section>
 
-<section id="post" class="about">
-<h2>For Employers</h2>
-<p>Looking for talented people? Add a job opportunity to Swurkif.</p>
-<div class="post">
-<h3>Post a Job</h3>
-<form id="jobForm">
-<input id="company" placeholder="Company name" required>
-<input id="title" placeholder="Job title" required>
-<input id="location" placeholder="Job location" required>
-<select id="type">
-<option>Full Time</option>
-<option>Part Time</option>
-<option>Remote</option>
-<option>Contract</option>
-</select>
-<textarea id="description" placeholder="Job description" rows="4" required></textarea>
-<button type="submit">Post Job</button>
-</form>
-</div>
+<section id="post">
+  <h2>Post a Job</h2>
+
+  <div id="postBox">
+    <p id="postNotice">Please login to post a job.</p>
+
+    <form id="jobForm">
+      <input id="company" placeholder="Company Name" required>
+      <input id="jobTitle" placeholder="Job Title" required>
+      <input id="jobLocation" placeholder="Job Location" required>
+
+      <select id="jobType" required>
+        <option value="">Select Job Type</option>
+        <option>Full Time</option>
+        <option>Part Time</option>
+        <option>Remote</option>
+      </select>
+
+      <textarea id="jobDescription"
+        placeholder="Job Description" required></textarea>
+
+      <button type="submit">Post Job</button>
+    </form>
+
+    <p id="jobMessage"></p>
+  </div>
 </section>
 
-<section id="about" class="about">
-<h2>About Swurkif</h2>
-<p>Swurkif is a platform designed to connect job seekers with employment opportunities and help employers discover talent.</p>
+<section id="account">
+  <h2>My Account</h2>
+
+  <div id="authBox">
+    <div id="loggedOut">
+      <h3>Create Account / Login</h3>
+      <input type="email" id="email"
+        placeholder="Email Address">
+      <input type="password" id="password"
+        placeholder="Password (at least 6 characters)">
+
+      <button id="signupBtn">Create Account</button>
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="loggedIn" class="hidden">
+      <h3>Welcome to Swurkif!</h3>
+      <p id="userEmail"></p>
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <p id="message"></p>
+  </div>
 </section>
+
+<section>
+  <h2>About Swurkif</h2>
+  <p>
+    Swurkif is a job platform designed to connect
+    job seekers with employment opportunities.
+  </p>
+</section>
+
+</div>
 
 <footer>
-<h2>Swurkif</h2>
-<p>Your Career. Your Future.</p>
-<p>© 2026 Swurkif. All Rights Reserved.</p>
+  <p>© 2026 Swurkif. All Rights Reserved.</p>
 </footer>
 
-<script>
-function applyJob(job){
-alert("You selected: "+job+". Application service will be connected soon.");
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
+  authDomain: "swurkif.firebaseapp.com",
+  projectId: "swurkif",
+  storageBucket: "swurkif.firebasestorage.app",
+  messagingSenderId: "250612764204",
+  appId: "1:250612764204:web:43b30828262efcea6f4b89"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const message = document.getElementById("message");
+
+function showMessage(text) {
+  message.textContent = text;
 }
 
-function searchJobs(){
-let query=document.getElementById("searchInput").value.toLowerCase();
-let cards=document.querySelectorAll("#jobList .job");
-let found=0;
-cards.forEach(card=>{
-let match=card.innerText.toLowerCase().includes(query);
-card.style.display=match?"block":"none";
-if(match)found++;
+// Create Account
+document.getElementById("signupBtn")
+.addEventListener("click", async () => {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    showMessage("Please enter email and password.");
+    return;
+  }
+
+  try {
+    await createUserWithEmailAndPassword(
+      auth, email, password
+    );
+    showMessage("Account created successfully!");
+  } catch (error) {
+    showMessage(error.message);
+  }
 });
-document.getElementById("noResults").style.display=found?"none":"block";
+
+// Login
+document.getElementById("loginBtn")
+.addEventListener("click", async () => {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    showMessage("Please enter email and password.");
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(
+      auth, email, password
+    );
+    showMessage("Login successful!");
+  } catch (error) {
+    showMessage(error.message);
+  }
+});
+
+// Logout
+document.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    showMessage("You are logged out.");
+  } catch (error) {
+    showMessage(error.message);
+  }
+});
+
+// Check Login Status
+onAuthStateChanged(auth, (user) => {
+  const loggedOut = document.getElementById("loggedOut");
+  const loggedIn = document.getElementById("loggedIn");
+  const userEmail = document.getElementById("userEmail");
+  const jobForm = document.getElementById("jobForm");
+  const postNotice = document.getElementById("postNotice");
+
+  if (user) {
+    loggedOut.classList.add("hidden");
+    loggedIn.classList.remove("hidden");
+    userEmail.textContent = user.email;
+    jobForm.classList.remove("hidden");
+    postNotice.textContent = "You can post a job.";
+  } else {
+    loggedOut.classList.remove("hidden");
+    loggedIn.classList.add("hidden");
+    jobForm.classList.add("hidden");
+    postNotice.textContent = "Please login to post a job.";
+  }
+});
+
+// Sample Jobs
+let jobs = [
+  {
+    company: "Swurkif",
+    title: "Data Entry Operator",
+    location: "Bahawalpur",
+    type: "Full Time",
+    description: "Data entry and computer work."
+  },
+  {
+    company: "ABC Company",
+    title: "Virtual Assistant",
+    location: "Remote",
+    type: "Remote",
+    description: "Online office support."
+  },
+  {
+    company: "Local Company",
+    title: "Electrician",
+    location: "Multan",
+    type: "Full Time",
+    description: "Electrical installation and maintenance."
+  },
+  {
+    company: "Support Services",
+    title: "Customer Support",
+    location: "Lahore",
+    type: "Part Time",
+    description: "Customer service and communication."
+  }
+];
+
+const jobList = document.getElementById("jobList");
+
+function displayJobs(list) {
+  jobList.replaceChildren();
+
+  if (list.length === 0) {
+    jobList.textContent = "No jobs found.";
+    return;
+  }
+
+  list.forEach((job) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const title = document.createElement("h3");
+    title.textContent = job.title;
+
+    const company = document.createElement("p");
+    company.textContent = "Company: " + job.company;
+
+    const location = document.createElement("p");
+    location.textContent = "Location: " + job.location;
+
+    const type = document.createElement("p");
+    type.textContent = "Type: " + job.type;
+
+    const description = document.createElement("p");
+    description.textContent = job.description;
+
+    const apply = document.createElement("button");
+    apply.textContent = "Apply Now";
+    apply.addEventListener("click", () => {
+      alert("Please contact the employer directly for this job.");
+    });
+
+    card.append(title, company, location, type, description, apply);
+    jobList.appendChild(card);
+  });
 }
 
-document.getElementById("jobForm").addEventListener("submit",function(e){
-e.preventDefault();
-let company=document.getElementById("company").value;
-let title=document.getElementById("title").value;
-let location=document.getElementById("location").value;
-let type=document.getElementById("type").value;
-let description=document.getElementById("description").value;
-let card=document.createElement("div");
-card.className="job";
-let tag=document.createElement("span");
-tag.className="tag";
-tag.textContent=type;
-let heading=document.createElement("h3");
-heading.textContent=title;
-let companyText=document.createElement("p");
-companyText.textContent=company;
-let locationText=document.createElement("p");
-locationText.textContent="Location: "+location;
-let desc=document.createElement("p");
-desc.textContent=description;
-card.append(tag,heading,companyText,locationText,desc);
-document.getElementById("jobList").prepend(card);
-document.getElementById("jobForm").reset();
-alert("Job added to this page!");
-document.getElementById("jobs").scrollIntoView();
+displayJobs(jobs);
+
+// Search Jobs
+function searchJobs() {
+  const term = document.getElementById("searchInput")
+    .value.trim().toLowerCase();
+
+  const filtered = jobs.filter((job) =>
+    job.title.toLowerCase().includes(term) ||
+    job.location.toLowerCase().includes(term) ||
+    job.company.toLowerCase().includes(term)
+  );
+
+  displayJobs(filtered);
+}
+
+document.getElementById("searchBtn")
+.addEventListener("click", searchJobs);
+
+document.getElementById("searchInput")
+.addEventListener("input", searchJobs);
+
+// Post Job
+document.getElementById("jobForm")
+.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!auth.currentUser) {
+    document.getElementById("jobMessage").textContent =
+      "Please login first.";
+    return;
+  }
+
+  const newJob = {
+    company: document.getElementById("company").value.trim(),
+    title: document.getElementById("jobTitle").value.trim(),
+    location: document.getElementById("jobLocation").value.trim(),
+    type: document.getElementById("jobType").value,
+    description: document.getElementById("jobDescription").value.trim()
+  };
+
+  jobs.unshift(newJob);
+  displayJobs(jobs);
+  event.target.reset();
+
+  document.getElementById("jobMessage").textContent =
+    "Job added in this browser. Database saving will be added next.";
 });
+
 </script>
 
 </body>
 </html>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
-    authDomain: "swurkif.firebaseapp.com",
-    projectId: "swurkif",
-    storageBucket: "swurkif.firebasestorage.app",
-    messagingSenderId: "250612764204",
-    appId: "1:250612764204:web:43b30828262efcea6f4b89"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-<script>
-async function signup() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    document.getElementById("message").innerText = "Account created successfully!";
-  } catch (error) {
-    document.getElementById("message").innerText = error.message;
-  }
-}
-
-async function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    document.getElementById("message").innerText = "Login successful!";
-  } catch (error) {
-    document.getElementById("message").innerText = error.message;
-  }
-}
-</script>
