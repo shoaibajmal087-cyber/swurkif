@@ -1,127 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SWURKIF - Find Your Work</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #17233b;
-    }
-    header {
-      background: #102b50;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 { margin: 0; color: #49d6b0; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-    }
-    .hero {
-      text-align: center;
-      padding: 85px 20px;
-      background: #e4f4f2;
-    }
-    .hero h2 { font-size: 38px; }
-    .hero p { font-size: 18px; }
-    .search {
-      margin: 25px auto;
-      max-width: 550px;
-    }
-    input {
-      width: 70%;
-      padding: 14px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      padding: 14px 20px;
-      border: 0;
-      border-radius: 8px;
-      background: #087e70;
-      color: white;
-      cursor: pointer;
-    }
-    .jobs { padding: 45px 7%; text-align: center; }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #0001;
-    }
-    footer {
-      background: #102b50;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swurkif - Find Your Future Job</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#fff;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px #00000010}
+.logo{font-size:27px;font-weight:bold;color:#1769e0}
+nav a{margin-left:20px;text-decoration:none;color:#26344b;font-weight:600}
+.hero{background:linear-gradient(120deg,#102c59,#1769e0);color:white;text-align:center;padding:75px 20px}
+.hero h1{font-size:42px;margin:0 0 15px}
+.hero p{font-size:17px;color:#e1eaff}
+.search{background:white;max-width:750px;margin:30px auto 0;padding:10px;border-radius:12px;display:flex;gap:8px}
+.search input{flex:1;min-width:0;border:0;padding:13px;font-size:15px;outline:none}
+button{background:#1769e0;color:white;border:0;padding:13px 20px;border-radius:8px;cursor:pointer;font-weight:bold}
+section{padding:45px 7%}
+h2{font-size:28px}
+.jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.job{background:white;padding:22px;border-radius:12px;box-shadow:0 3px 15px #0000000b}
+.job h3{margin-top:0;color:#173b70}
+.tag{display:inline-block;background:#eaf2ff;color:#1769e0;padding:6px 10px;border-radius:20px;font-size:12px}
+.job p{color:#64748b}
+.job button{width:100%;margin-top:10px}
+.post{background:white;border-radius:14px;padding:28px;max-width:650px;margin:auto}
+.post input,.post select,.post textarea{width:100%;padding:13px;margin:8px 0 14px;border:1px solid #d7deea;border-radius:8px;font-size:15px}
+.post button{width:100%}
+.about{text-align:center;background:#eaf2ff}
+footer{text-align:center;background:#102c59;color:white;padding:25px}
+@media(max-width:600px){
+header{padding:15px 5%;flex-wrap:wrap;gap:12px}
+nav a{margin-left:8px;font-size:13px}
+.hero h1{font-size:30px}
+.search{flex-direction:column}
+section{padding:35px 5%}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>SWURKIF</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#jobs">Jobs</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
 
-  <section class="hero" id="home">
-    <h2>Find Work. Build Your Future.</h2>
-    <p>Your journey to better opportunities starts here.</p>
-    <div class="search">
-      <input type="text" placeholder="Search for jobs...">
-      <button onclick="alert('Job search coming soon!')">Search</button>
-    </div>
-    <button onclick="alert('Registration coming soon!')">
-      Get Started
-    </button>
-  </section>
+<header>
+<div class="logo">Swurkif</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#jobs">Find Jobs</a>
+<a href="#post">Post a Job</a>
+<a href="#about">About</a>
+</nav>
+</header>
 
-  <section class="jobs" id="jobs">
-    <h2>Explore Opportunities</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Data Entry</h3>
-        <p>Find data entry opportunities.</p>
-      </div>
-      <div class="card">
-        <h3>Virtual Assistant</h3>
-        <p>Work remotely with clients.</p>
-      </div>
-      <div class="card">
-        <h3>Graphic Design</h3>
-        <p>Show your creative skills.</p>
-      </div>
-      <div class="card">
-        <h3>Web Development</h3>
-        <p>Build websites for clients.</p>
-      </div>
-    </div>
-  </section>
+<div class="hero" id="home">
+<h1>Find Your Dream Job</h1>
+<p>Discover opportunities. Build your future with Swurkif.</p>
+<div class="search">
+<input id="searchInput" type="text" placeholder="Job title or keyword...">
+<button onclick="searchJobs()">Search Jobs</button>
+</div>
+</div>
 
-  <section class="jobs" id="about">
-    <h2>About SWURKIF</h2>
-    <p>Connecting talented people with work opportunities.</p>
-  </section>
+<section id="jobs">
+<h2>Latest Job Opportunities</h2>
+<p>Explore opportunities and take your next career step.</p>
+<div class="jobs" id="jobList">
+<div class="job">
+<span class="tag">Full Time</span>
+<h3>Data Entry Operator</h3>
+<p>Office Administration</p>
+<p>Location: Pakistan</p>
+<p>Salary: Negotiable</p>
+<button onclick="applyJob('Data Entry Operator')">Apply Now</button>
+</div>
+<div class="job">
+<span class="tag">Part Time</span>
+<h3>Virtual Assistant</h3>
+<p>Online Work</p>
+<p>Location: Remote</p>
+<p>Salary: Negotiable</p>
+<button onclick="applyJob('Virtual Assistant')">Apply Now</button>
+</div>
+<div class="job">
+<span class="tag">Full Time</span>
+<h3>Electrician</h3>
+<p>Electrical Services</p>
+<p>Location: Pakistan</p>
+<p>Salary: Negotiable</p>
+<button onclick="applyJob('Electrician')">Apply Now</button>
+</div>
+<div class="job">
+<span class="tag">Remote</span>
+<h3>Customer Support</h3>
+<p>Customer Service</p>
+<p>Location: Remote</p>
+<p>Salary: Negotiable</p>
+<button onclick="applyJob('Customer Support')">Apply Now</button>
+</div>
+</div>
+<p id="noResults" style="display:none">No matching jobs found.</p>
+</section>
 
-  <footer>
-    <p>© 2026 SWURKIF. All rights reserved.</p>
-  </footer>
+<section id="post" class="about">
+<h2>For Employers</h2>
+<p>Looking for talented people? Add a job opportunity to Swurkif.</p>
+<div class="post">
+<h3>Post a Job</h3>
+<form id="jobForm">
+<input id="company" placeholder="Company name" required>
+<input id="title" placeholder="Job title" required>
+<input id="location" placeholder="Job location" required>
+<select id="type">
+<option>Full Time</option>
+<option>Part Time</option>
+<option>Remote</option>
+<option>Contract</option>
+</select>
+<textarea id="description" placeholder="Job description" rows="4" required></textarea>
+<button type="submit">Post Job</button>
+</form>
+</div>
+</section>
+
+<section id="about" class="about">
+<h2>About Swurkif</h2>
+<p>Swurkif is a platform designed to connect job seekers with employment opportunities and help employers discover talent.</p>
+</section>
+
+<footer>
+<h2>Swurkif</h2>
+<p>Your Career. Your Future.</p>
+<p>© 2026 Swurkif. All Rights Reserved.</p>
+</footer>
+
+<script>
+function applyJob(job){
+alert("You selected: "+job+". Application service will be connected soon.");
+}
+
+function searchJobs(){
+let query=document.getElementById("searchInput").value.toLowerCase();
+let cards=document.querySelectorAll("#jobList .job");
+let found=0;
+cards.forEach(card=>{
+let match=card.innerText.toLowerCase().includes(query);
+card.style.display=match?"block":"none";
+if(match)found++;
+});
+document.getElementById("noResults").style.display=found?"none":"block";
+}
+
+document.getElementById("jobForm").addEventListener("submit",function(e){
+e.preventDefault();
+let company=document.getElementById("company").value;
+let title=document.getElementById("title").value;
+let location=document.getElementById("location").value;
+let type=document.getElementById("type").value;
+let description=document.getElementById("description").value;
+let card=document.createElement("div");
+card.className="job";
+let tag=document.createElement("span");
+tag.className="tag";
+tag.textContent=type;
+let heading=document.createElement("h3");
+heading.textContent=title;
+let companyText=document.createElement("p");
+companyText.textContent=company;
+let locationText=document.createElement("p");
+locationText.textContent="Location: "+location;
+let desc=document.createElement("p");
+desc.textContent=description;
+card.append(tag,heading,companyText,locationText,desc);
+document.getElementById("jobList").prepend(card);
+document.getElementById("jobForm").reset();
+alert("Job added to this page!");
+document.getElementById("jobs").scrollIntoView();
+});
+</script>
+
 </body>
 </html>
