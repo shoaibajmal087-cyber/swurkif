@@ -5,58 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swurkif | Find Your Opportunity</title>
 <style>
-:root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--muted:#667085;--green:#16834a;--red:#c0392b}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
-header{background:linear-gradient(120deg,#102b50,#1769c2);color:#fff;padding:24px 16px;text-align:center}header h1{font-size:34px;margin:0}header p{margin:8px 0 0}
-nav{background:#0c2341;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px}nav a{color:#fff;text-decoration:none;padding:9px 12px;border-radius:7px}nav a:hover{background:#24476f}
-.container{max-width:1050px;margin:auto;padding:18px}.hero,.panel,.card{background:#fff;border-radius:13px;padding:20px;margin:16px 0;box-shadow:0 3px 14px #102b5010}
-.hero{text-align:center;background:linear-gradient(120deg,#e8f2ff,#fff)}.hero h2{font-size:30px;margin:4px 0 10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;background:#fff}textarea{min-height:100px;resize:vertical}
-button,.button{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:11px 16px;margin:5px 4px 5px 0;cursor:pointer;font-weight:600;text-decoration:none}button:hover,.button:hover{filter:brightness(.92)}
-button.secondary{background:#526579}button.danger{background:var(--red)}button.success{background:var(--green)}button:disabled{opacity:.55;cursor:not-allowed}
-h2{color:var(--navy);margin-top:4px}h3{margin:4px 0 10px;color:var(--navy)}.small,.muted{font-size:13px;color:var(--muted)}
-.notice{padding:12px;border-radius:8px;background:#edf5ff;margin:10px 0;overflow-wrap:anywhere}.error{background:#fff0ef;color:#9d251c}.ok{background:#eaf8ef;color:#17683a}
-.hidden{display:none!important}.pill{display:inline-block;padding:4px 9px;border-radius:20px;background:#e8f2ff;color:#15569b;font-size:12px;font-weight:bold}
-.job-card{border:1px solid #e3eaf2}.job-card p{margin:7px 0}.actions{display:flex;gap:6px;flex-wrap:wrap}hr{border:0;border-top:1px solid #e7edf4;margin:16px 0}
-footer{text-align:center;background:#102b50;color:#fff;padding:22px;margin-top:30px}label{font-weight:600;font-size:14px}#message{white-space:pre-wrap}
-@media(max-width:600px){header h1{font-size:28px}.container{padding:12px}.hero h2{font-size:24px}nav{gap:2px}nav a{padding:8px;font-size:14px}}
+:root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--green:#16834a;--red:#c0392b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
+header{background:var(--navy);color:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:27px;font-weight:bold}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+button{border:0;border-radius:7px;padding:11px 15px;cursor:pointer;font-weight:bold}
+nav button{background:white;color:var(--navy)}
+.primary{background:var(--blue);color:white}
+.success{background:var(--green);color:white}
+.danger{background:var(--red);color:white}
+.hero{background:linear-gradient(120deg,#102b50,#1769c2);color:white;text-align:center;padding:60px 20px}
+.hero h1{font-size:36px}
+.container{max-width:1100px;margin:25px auto;padding:0 16px}
+.panel,.job,.auth{background:white;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 3px 14px #102b5010}
+h2,h3{color:var(--navy)}
+input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #ccd5df;border-radius:7px;font-size:15px}
+textarea{min-height:100px}
+label{font-weight:bold;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.hidden{display:none!important}
+.notice{background:#fff7e6;border:1px solid #f2d28b;padding:15px;border-radius:8px;line-height:1.6;margin:12px 0}
+.tag{display:inline-block;background:#e8f1ff;color:#1769c2;padding:5px 9px;border-radius:20px;font-size:12px}
+footer{background:var(--navy);color:white;text-align:center;padding:25px;margin-top:40px}
+#message{padding:12px;margin:15px 0;border-radius:7px;background:#e8f1ff;color:var(--navy)}
+.small{font-size:13px;color:#667085}
+@media(max-width:600px){header{justify-content:center}.hero h1{font-size:28px}nav{justify-content:center}}
 </style>
 </head>
 <body>
-<header><h1>Swurkif</h1><p>Find Your Opportunity. Build Your Future.</p></header>
-<nav><a href="#home">Home</a><a href="#jobs">Find Jobs</a><a href="#post">Post a Job</a><a href="#dashboard">Dashboard</a><a href="#account">Account</a></nav>
+
+<header>
+  <div class="logo">Swurkif</div>
+  <nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('jobs')">Find Jobs</button>
+    <button onclick="showSection('register')">Register</button>
+    <button onclick="showSection('login')">Login</button>
+    <button id="dashboardNav" class="hidden" onclick="showDashboard()">Dashboard</button>
+    <button id="logoutNav" class="hidden" onclick="logout()">Logout</button>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <h1>Find Your Opportunity</h1>
+  <p>Discover jobs, connect with employers and build your future.</p>
+  <button class="primary" onclick="showSection('register')">Create Account</button>
+  <button onclick="showSection('jobs')">Explore Jobs</button>
+</section>
+
 <main class="container">
-<section id="home" class="hero"><h2>Your next opportunity starts here</h2><p>Discover jobs, connect with employers and take the next step in your career.</p><a class="button" href="#jobs">Explore Jobs</a><a class="button secondary" href="#post">Hire Talent</a></section>
+<div id="message" class="hidden"></div>
 
-<section id="account" class="panel">
-<h2>Account</h2>
-<div id="loggedOut"><div class="grid">
-<div><h3>Create an account</h3><label>Full name</label><input id="signupName" placeholder="Your full name"><label>Email</label><input id="signupEmail" type="email" placeholder="Email address"><label>Password</label><input id="signupPassword" type="password" placeholder="At least 6 characters"><label>Account type</label><select id="signupRole"><option value="jobSeeker">Job Seeker (free)</option><option value="employer">Employer</option></select><button id="signupBtn">Create Account</button></div>
-<div><h3>Login</h3><label>Email</label><input id="loginEmail" type="email" placeholder="Email address"><label>Password</label><input id="loginPassword" type="password" placeholder="Password"><button id="loginBtn">Login</button></div>
-</div></div>
-<div id="loggedIn" class="hidden"><p id="welcomeText"></p><p id="roleText" class="pill"></p><button id="logoutBtn" class="secondary">Logout</button></div>
-<div id="profileSetup" class="notice hidden"><strong>Complete your Swurkif profile</strong><p class="small">Your existing login has no Swurkif profile yet. Choose your account type once.</p><label>Full name</label><input id="profileName" placeholder="Your full name"><label>Account type</label><select id="profileRole"><option value="jobSeeker">Job Seeker (free)</option><option value="employer">Employer</option></select><button id="saveProfileBtn">Save Profile</button></div>
-<div id="message" class="notice hidden"></div>
+<section id="register" class="auth hidden">
+<h2>Create Your Account</h2>
+<label>Full Name</label>
+<input id="regName" placeholder="Enter your name">
+<label>Email</label>
+<input id="regEmail" type="email" placeholder="Email address">
+<label>Password</label>
+<input id="regPassword" type="password" placeholder="Minimum 6 characters">
+<label>Account Type</label>
+<select id="regRole">
+<option value="jobseeker">Job Seeker</option>
+<option value="Employer">Employer</option>
+</select>
+<button class="primary" onclick="register()">Create Account</button>
 </section>
 
-<section id="jobs" class="panel"><h2>Find Jobs</h2><input id="searchInput" placeholder="Search job title, company or location"><div id="jobList" class="grid"></div></section>
-
-<section id="post" class="panel"><h2>Post a Job</h2><div class="notice"><strong>Employer posting fee: Rs. 500 per job.</strong><br>JazzCash: <strong>03027373872</strong><br>Send Rs. 500, then enter the transaction ID. Your job will appear publicly only after admin approval.</div>
-<div id="jobFormNotice" class="muted">Login with an Employer account to submit a job.</div>
-<form id="jobForm" class="hidden"><label>Company name</label><input id="company" required><label>Job title</label><input id="jobTitle" required><label>Job location</label><input id="jobLocation" placeholder="City or Remote" required><label>Job type</label><select id="jobType" required><option value="">Select job type</option><option>Full Time</option><option>Part Time</option><option>Contract</option><option>Remote</option><option>Internship</option></select><label>Job description</label><textarea id="jobDescription" required></textarea><label>JazzCash transaction ID</label><input id="transactionId" required placeholder="Enter transaction ID after sending Rs. 500"><button type="submit">Submit Job for Approval</button></form>
+<section id="login" class="auth hidden">
+<h2>Login</h2>
+<label>Email</label>
+<input id="loginEmail" type="email" placeholder="Email">
+<label>Password</label>
+<input id="loginPassword" type="password" placeholder="Password">
+<button class="primary" onclick="login()">Login</button>
 </section>
 
-<section id="dashboard" class="panel"><h2>My Dashboard</h2><div id="dashboardNotice" class="muted">Login to view your dashboard.</div><div id="myJobs"></div><div id="myApplications"></div><div id="employerApplications"></div>
-<div id="adminPanel" class="hidden"><hr><h2>Admin Panel — Payment & Job Approval</h2><p class="small">Check the transaction in your own JazzCash account before approving. The website does not verify payments automatically.</p><div id="adminJobs"></div></div></section>
+<section id="account" class="panel hidden">
+<h2>My Account</h2>
+<p id="accountName"></p>
+<p id="accountEmail"></p>
+<p id="accountRole"></p>
+</section>
 
-<section class="panel"><h2>How Swurkif works</h2><div class="grid"><div><h3>For job seekers</h3><p>Create a free account, search approved jobs and apply without a fee.</p></div><div><h3>For employers</h3><p>Submit a job with the Rs. 500 JazzCash transaction ID. Your listing goes live after verification.</p></div><div><h3>For trust</h3><p>Listings are reviewed manually before publication. Swurkif should not promise jobs or collect fees from job seekers.</p></div></div></section>
-</main><footer>© 2026 Swurkif. All rights reserved.</footer>
+<section id="jobs" class="hidden">
+<div class="panel">
+<h2>Find Jobs</h2>
+<input id="searchJob" placeholder="Search jobs, company or city" oninput="renderJobs()">
+</div>
+<div id="jobList" class="grid"></div>
+</section>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, where, getDocs, doc, getDoc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+<section id="employerPanel" class="panel hidden">
+<h2>Employer Dashboard</h2>
+<div class="notice">
+<h3>Job Posting Fee: Rs. 500</h3>
+<b>JazzCash Number:</b> 03027373872<br>
+<b>Account Title:</b> Shahzaib Ajmal
+<p>Send Rs. 500 and enter your transaction ID. Admin will manually verify payment.</p>
+</div>
+<label>Company Name</label>
+<input id="company" placeholder="Company name">
+<label>Job Title</label>
+<input id="title" placeholder="Job title">
+<label>Job Description</label>
+<textarea id="description" placeholder="Job details"></textarea>
+<label>Location</label>
+<input id="location" placeholder="City">
+<label>Job Type</label>
+<select id="type">
+<option>Full time</option>
+<option>Part time</option>
+<option>Remote</option>
+<option>Contract</option>
+<option>Internship</option>
+</select>
+<label>JazzCash Transaction ID</label>
+<input id="transactionId" placeholder="Transaction ID">
+<button class="primary" onclick="postJob()">Submit Job for Approval</button>
+<hr>
+<h3>My Posted Jobs</h3>
+<div id="employerJobs"></div>
+</section>
 
+<section id="seekerPanel" class="panel hidden">
+<h2>Job Seeker Dashboard</h2>
+<div id="myApplications"></div>
+</section>
+
+<section id="adminPanel" class="panel hidden">
+<h2>Admin Dashboard</h2>
+<div class="notice">Check actual JazzCash payment before approving any job.</div>
+<h3>Pending Jobs</h3>
+<div id="pendingJobs"></div>
+<hr>
+<h3>Applications</h3>
+<div id="adminApplications"></div>
+</section>
+</main>
+
+<footer>
+<h2 style="color:white">Swurkif</h2>
+<p>Find Your Opportunity</p>
+<p>© 2026 Swurkif. All Rights Reserved.</p>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
 const firebaseConfig = {
   apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
   authDomain: "swurkif.firebaseapp.com",
@@ -65,152 +165,333 @@ const firebaseConfig = {
   messagingSenderId: "250612764204",
   appId: "1:250612764204:web:43b30828262efcea6f4b89"
 };
-const ADMIN_UID = "I599sebYSIUPTFuqVdYiVWlCc2q2";
-const JOB_FEE = 500;
-const JAZZCASH_NUMBER = "03027373872";
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const $ = id => document.getElementById(id);
-let currentProfile = null;
-let allPublicJobs = [];
-let stopJobsListener = null;
 
-function isAdmin(){return !!auth.currentUser && auth.currentUser.uid === ADMIN_UID;}
-function showMessage(text,isError=false){$("message").textContent=text;$("message").className="notice "+(isError?"error":"ok");$("message").classList.remove("hidden");}
-function updateAccountUI(user){
-  $("loggedOut").classList.toggle("hidden",!!user);
-  $("loggedIn").classList.toggle("hidden",!user);
-  $("profileSetup").classList.add("hidden");
-  $("jobForm").classList.add("hidden");
-  $("jobFormNotice").textContent="Login with an Employer account to submit a job.";
-  if(user){$("welcomeText").textContent="Logged in: "+(user.email||"");$("roleText").textContent=isAdmin()?"Swurkif Admin":(currentProfile?.role==="employer"?"Employer":currentProfile?.role==="jobSeeker"?"Job Seeker":"Profile setup required");
-    if(currentProfile?.role==="employer"||isAdmin()){$("jobForm").classList.remove("hidden");$("jobFormNotice").textContent="Submit your job and JazzCash transaction ID. Admin approval is required.";}
-    if(!currentProfile&&!isAdmin())$("profileSetup").classList.remove("hidden");
-  }
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+
+const ADMIN_UID="tsjGJI6nMZZZwhlpa4pmIHCYy3c2";
+
+let currentUser=null;
+let currentProfile=null;
+let jobsCache=[];
+
+function el(id){return document.getElementById(id)}
+
+function escapeHTML(v){
+return String(v??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+})[c]);
 }
-$("signupBtn").addEventListener("click",async()=>{
-  const name=$("signupName").value.trim(),email=$("signupEmail").value.trim(),password=$("signupPassword").value,role=$("signupRole").value;
-  if(!name||!email||password.length<6)return showMessage("Enter your name, valid email and password of at least 6 characters.",true);
-  try{const result=await createUserWithEmailAndPassword(auth,email,password);await setDoc(doc(db,"users",result.user.uid),{name,email,role,createdAt:serverTimestamp()});currentProfile={name,email,role};updateAccountUI(result.user);showMessage("Account created successfully.");}
-  catch(e){showMessage(e.message,true);}
+
+function message(t){
+el("message").textContent=t;
+el("message").classList.remove("hidden");
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function hideSections(){
+["register","login","account","jobs","employerPanel","seekerPanel","adminPanel"]
+.forEach(id=>el(id).classList.add("hidden"));
+}
+
+function showSection(id){
+hideSections();
+el("hero").classList.toggle("hidden",id!=="home");
+el(id).classList.remove("hidden");
+if(id==="jobs")loadJobs();
+if(id==="account")showAccount();
+}
+
+function isAdmin(){
+return currentUser&&currentUser.uid===ADMIN_UID&&currentProfile?.role==="admin";
+}
+
+function showDashboard(){
+if(!currentUser||!currentProfile)return message("Please login first.");
+hideSections();
+el("hero").classList.add("hidden");
+if(isAdmin()){
+el("adminPanel").classList.remove("hidden");
+loadAdminDashboard();
+}else if(currentProfile.role==="Employer"){
+el("employerPanel").classList.remove("hidden");
+loadEmployerJobs();
+}else if(currentProfile.role==="jobseeker"){
+el("seekerPanel").classList.remove("hidden");
+loadMyApplications();
+}
+}
+
+// REGISTER
+async function register(){
+const name=el("regName").value.trim();
+const email=el("regEmail").value.trim();
+const password=el("regPassword").value;
+const role=el("regRole").value;
+if(!name||!email||password.length<6)return message("Enter name, email and password of at least 6 characters.");
+try{
+const result=await auth.createUserWithEmailAndPassword(email,password);
+await db.collection("users").doc(result.user.uid).set({
+name,email,role,
+createdAt:firebase.firestore.FieldValue.serverTimestamp()
 });
-$("loginBtn").addEventListener("click",async()=>{try{await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);}catch(e){showMessage(e.message,true);}});
-$("logoutBtn").addEventListener("click",async()=>{try{await signOut(auth);showMessage("You are logged out.");}catch(e){showMessage(e.message,true);}});
-$("saveProfileBtn").addEventListener("click",async()=>{
-  if(!auth.currentUser||isAdmin())return;
-  const name=$("profileName").value.trim(),role=$("profileRole").value;
-  if(!name)return showMessage("Please enter your full name.",true);
-  try{await setDoc(doc(db,"users",auth.currentUser.uid),{name,email:auth.currentUser.email||"",role,createdAt:serverTimestamp()});currentProfile={name,email:auth.currentUser.email||"",role};updateAccountUI(auth.currentUser);await refreshDashboard();showMessage("Profile saved.");}
-  catch(e){showMessage(e.message,true);}
+message("Account created successfully!");
+showSection("home");
+}catch(e){message(e.message)}
+}
+
+// LOGIN
+async function login(){
+try{
+await auth.signInWithEmailAndPassword(
+el("loginEmail").value.trim(),
+el("loginPassword").value
+);
+message("Login successful!");
+showSection("home");
+}catch(e){message(e.message)}
+}
+
+// LOGOUT
+async function logout(){
+try{
+await auth.signOut();
+message("Logged out.");
+showSection("home");
+}catch(e){message(e.message)}
+}
+
+// AUTH STATE
+auth.onAuthStateChanged(async user=>{
+currentUser=user;
+currentProfile=null;
+el("dashboardNav").classList.add("hidden");
+el("logoutNav").classList.add("hidden");
+if(!user)return;
+try{
+const doc=await db.collection("users").doc(user.uid).get();
+if(doc.exists){
+currentProfile=doc.data();
+el("dashboardNav").classList.remove("hidden");
+el("logoutNav").classList.remove("hidden");
+}else{
+message("Account profile not found. Contact Admin.");
+}
+}catch(e){message(e.message)}
 });
+
+function showAccount(){
+if(!currentUser||!currentProfile){
+el("accountName").textContent="Please login first.";
+return;
+}
+el("accountName").textContent="Name: "+currentProfile.name;
+el("accountEmail").textContent="Email: "+currentProfile.email;
+el("accountRole").textContent="Role: "+currentProfile.role;
+}
+
+// POST JOB
+async function postJob(){
+if(!currentUser||currentProfile?.role!=="Employer")
+return message("Please login with an Employer account.");
+
+const company=el("company").value.trim();
+const title=el("title").value.trim();
+const description=el("description").value.trim();
+const location=el("location").value.trim();
+const type=el("type").value;
+const transactionId=el("transactionId").value.trim();
+
+if(!company||!title||!description||!location||!transactionId)
+return message("Please fill all fields.");
+
+try{
+await db.collection("jobs").add({
+Company:company,
+Description:description,
+Location:location,
+"Owner id":currentUser.uid,
+Status:"Pending",
+Title:title,
+Type:type,
+fee:500,
+paymentMethod:"JazzCash",
+paymentStatus:"Pending",
+transactionId:transactionId,
+createdAt:firebase.firestore.FieldValue.serverTimestamp()
+});
+message("Job submitted. Admin will verify payment.");
+["company","title","description","location","transactionId"].forEach(id=>el(id).value="");
+loadEmployerJobs();
+}catch(e){message("Job submission failed: "+e.message)}
+}
+
+// LOAD JOBS
+async function loadJobs(){
+const list=el("jobList");
+if(!currentUser){list.innerHTML="<p>Please login to view jobs.</p>";return}
+list.innerHTML="Loading...";
+try{
+const snapshot=await db.collection("jobs").get();
+jobsCache=[];
+snapshot.forEach(doc=>jobsCache.push({id:doc.id,...doc.data()}));
+renderJobs();
+}catch(e){list.textContent="Error: "+e.message}
+}
 
 function renderJobs(){
-  const term=$("searchInput").value.trim().toLowerCase();
-  const list=allPublicJobs.filter(j=>[j.title,j.company,j.location,j.type,j.description].some(v=>String(v||"").toLowerCase().includes(term)));
-  const host=$("jobList");host.replaceChildren();
-  if(!list.length){host.textContent="No approved jobs found.";return;}
-  list.forEach(job=>{
-    const card=document.createElement("article");card.className="card job-card";
-    const title=document.createElement("h3");title.textContent=job.title||"Job";
-    const details=document.createElement("p");details.textContent=(job.company||"")+" • "+(job.location||"")+" • "+(job.type||"");
-    const desc=document.createElement("p");desc.textContent=job.description||"";
-    const btn=document.createElement("button");btn.textContent="Apply Now";
-    btn.addEventListener("click",async()=>{
-      const user=auth.currentUser;if(!user)return alert("Please login as a Job Seeker first.");
-      if(currentProfile?.role!=="jobSeeker"&&!isAdmin())return alert("Only Job Seeker accounts can apply.");
-      const applicantName=currentProfile?.name||prompt("Enter your full name:");if(!applicantName)return;
-      try{
-        await addDoc(collection(db,"applications"),{jobId:job.id,jobTitle:job.title,company:job.company,employerId:job.ownerId,userId:user.uid,applicantName,applicantEmail:user.email||"",status:"Pending",createdAt:serverTimestamp()});
-        alert("Application submitted successfully.");await loadMyApplications();
-      }catch(e){alert(e.message);}
-    });
-    card.append(title,details,desc,btn);host.appendChild(card);
-  });
+const list=el("jobList");
+const search=el("searchJob").value.toLowerCase();
+const filtered=jobsCache.filter(job=>{
+return job.Status==="Approved"||
+job["Owner id"]===currentUser?.uid||isAdmin();
+}).filter(job=>{
+return [job.Title,job.Company,job.Location].join(" ").toLowerCase().includes(search);
+});
+if(!filtered.length){list.innerHTML="<p>No jobs found.</p>";return}
+list.innerHTML=filtered.map(job=>`
+<div class="job">
+<h3>${escapeHTML(job.Title)}</h3>
+<p><b>Company:</b> ${escapeHTML(job.Company)}</p>
+<p><b>Location:</b> ${escapeHTML(job.Location)}</p>
+<p><b>Type:</b> ${escapeHTML(job.Type)}</p>
+<p>${escapeHTML(job.Description)}</p>
+<span class="tag">${escapeHTML(job.Status)}</span>
+${job.Status==="Approved"&&currentProfile?.role==="jobseeker"
+?`<button class="primary" onclick="applyJob('${job.id}')">Apply Now</button>`:""}
+</div>`).join("");
 }
-$("searchInput").addEventListener("input",renderJobs);
-function listenPublicJobs(){
-  if(stopJobsListener)stopJobsListener();
-  stopJobsListener=onSnapshot(query(collection(db,"jobs"),where("status","==","approved")),snap=>{allPublicJobs=snap.docs.map(d=>({id:d.id,...d.data()}));renderJobs();},e=>showMessage("Could not load jobs: "+e.message,true));
+
+// APPLY
+async function applyJob(jobId){
+if(!currentUser||currentProfile?.role!=="jobseeker")
+return message("Login as Job Seeker first.");
+try{
+const job=jobsCache.find(j=>j.id===jobId);
+if(!job||job.Status!=="Approved")return message("Job unavailable.");
+await db.collection("applications").add({
+userId:currentUser.uid,
+employerId:job["Owner id"],
+jobId,
+jobTitle:job.Title,
+company:job.Company,
+status:"Pending",
+createdAt:firebase.firestore.FieldValue.serverTimestamp()
+});
+message("Application submitted successfully.");
+}catch(e){message("Application failed: "+e.message)}
 }
-async function loadMyJobs(){
-  if(!auth.currentUser||currentProfile?.role!=="employer")return;
-  const snap=await getDocs(query(collection(db,"jobs"),where("ownerId","==",auth.currentUser.uid)));
-  const host=$("myJobs");host.replaceChildren();const h=document.createElement("h3");h.textContent="My Posted Jobs";host.appendChild(h);
-  if(snap.empty){host.append("You have not submitted any jobs yet.");return;}
-  snap.forEach(d=>{const j=d.data(),p=document.createElement("p");p.textContent=`${j.title} — Job: ${j.status} — Payment: ${j.paymentStatus}`;host.appendChild(p);});
+
+// EMPLOYER JOBS
+async function loadEmployerJobs(){
+const box=el("employerJobs");
+box.innerHTML="Loading...";
+try{
+const snap=await db.collection("jobs").where("Owner id","==",currentUser.uid).get();
+if(snap.empty){box.innerHTML="<p>No jobs posted yet.</p>";return}
+box.innerHTML="";
+snap.forEach(doc=>{
+const j=doc.data();
+box.innerHTML+=`<div class="job">
+<h3>${escapeHTML(j.Title)}</h3>
+<p>${escapeHTML(j.Company)}</p>
+<p>Status: ${escapeHTML(j.Status)}</p>
+<p>Payment: ${escapeHTML(j.paymentStatus)}</p>
+</div>`;
+});
+}catch(e){box.textContent=e.message}
 }
+
+// SEEKER APPLICATIONS
 async function loadMyApplications(){
-  if(!auth.currentUser||currentProfile?.role!=="jobSeeker")return;
-  const snap=await getDocs(query(collection(db,"applications"),where("userId","==",auth.currentUser.uid)));
-  const host=$("myApplications");host.replaceChildren();const h=document.createElement("h3");h.textContent="My Applications";host.appendChild(h);
-  if(snap.empty){host.append("You have not applied for any jobs yet.");return;}
-  snap.forEach(d=>{const a=d.data(),p=document.createElement("p");p.textContent=`${a.jobTitle} — ${a.company} — ${a.status}`;host.appendChild(p);});
-}
-async function loadEmployerApplications(){
-  if(!auth.currentUser||currentProfile?.role!=="employer")return;
-  const host=$("employerApplications");host.replaceChildren();const h=document.createElement("h3");h.textContent="Applications for My Jobs";host.appendChild(h);
-  const snap=await getDocs(query(collection(db,"applications"),where("employerId","==",auth.currentUser.uid)));
-  if(snap.empty){host.append("No applications received yet.");return;}
-  snap.forEach(d=>{
-    const a=d.data(),box=document.createElement("div");box.className="card";
-    const p=document.createElement("p");p.textContent=`${a.applicantName} (${a.applicantEmail}) — ${a.jobTitle} — ${a.status}`;
-    const accept=document.createElement("button");accept.className="success";accept.textContent="Accept";
-    const reject=document.createElement("button");reject.className="danger";reject.textContent="Reject";
-    accept.addEventListener("click",()=>changeApplicationStatus(d.id,"Accepted"));
-    reject.addEventListener("click",()=>changeApplicationStatus(d.id,"Rejected"));
-    box.append(p,accept,reject);host.appendChild(box);
-  });
-}
-async function changeApplicationStatus(id,status){try{await updateDoc(doc(db,"applications",id),{status});await loadEmployerApplications();}catch(e){showMessage(e.message,true);}}
-async function loadAdminJobs(){
-  if(!isAdmin())return;
-  const host=$("adminJobs");host.replaceChildren();
-  const snap=await getDocs(query(collection(db,"jobs"),where("status","==","pending")));
-  if(snap.empty){host.textContent="No pending jobs.";return;}
-  snap.forEach(d=>{
-    const j=d.data(),box=document.createElement("div");box.className="card";
-    const p=document.createElement("p");p.textContent=`${j.title} — ${j.company} — ${j.location} | Rs. ${j.fee} | JazzCash Txn: ${j.transactionId} | Employer UID: ${j.ownerId}`;
-    const approve=document.createElement("button");approve.className="success";approve.textContent="Verify payment & approve";
-    const reject=document.createElement("button");reject.className="danger";reject.textContent="Reject";
-    approve.addEventListener("click",()=>adminSetJobStatus(d.id,"approved","verified"));
-    reject.addEventListener("click",()=>adminSetJobStatus(d.id,"rejected","rejected"));
-    box.append(p,approve,reject);host.appendChild(box);
-  });
-}
-async function adminSetJobStatus(id,status,paymentStatus){
-  if(!isAdmin())return alert("Admin only.");
-  try{await updateDoc(doc(db,"jobs",id),{status,paymentStatus,reviewedAt:serverTimestamp()});await loadAdminJobs();showMessage("Job status updated.");}
-  catch(e){showMessage(e.message,true);}
-}
-$("jobForm").addEventListener("submit",async event=>{
-  event.preventDefault();
-  if(!auth.currentUser||(currentProfile?.role!=="employer"&&!isAdmin()))return showMessage("Login with an Employer account first.",true);
-  const transactionId=$("transactionId").value.trim();if(!transactionId)return showMessage("Enter the JazzCash transaction ID.",true);
-  const newJob={ownerId:auth.currentUser.uid,company:$("company").value.trim(),title:$("jobTitle").value.trim(),location:$("jobLocation").value.trim(),type:$("jobType").value,description:$("jobDescription").value.trim(),fee:JOB_FEE,paymentMethod:"JazzCash",paymentNumber:JAZZCASH_NUMBER,transactionId,paymentStatus:"pending",status:"pending",createdAt:serverTimestamp()};
-  try{await addDoc(collection(db,"jobs"),newJob);event.target.reset();showMessage("Job submitted. It will be published after JazzCash payment verification by Swurkif admin.");await loadMyJobs();if(isAdmin())await loadAdminJobs();}
-  catch(e){showMessage(e.message,true);}
+const box=el("myApplications");
+box.innerHTML="Loading...";
+try{
+const snap=await db.collection("applications").where("userId","==",currentUser.uid).get();
+if(snap.empty){box.innerHTML="<p>No applications yet.</p>";return}
+box.innerHTML="";
+snap.forEach(doc=>{
+const a=doc.data();
+box.innerHTML+=`<div class="job">
+<h3>${escapeHTML(a.jobTitle)}</h3>
+<p>Company: ${escapeHTML(a.company)}</p>
+<p>Status: ${escapeHTML(a.status)}</p>
+</div>`;
 });
-async function refreshDashboard(){
-  $("myJobs").replaceChildren();$("myApplications").replaceChildren();$("employerApplications").replaceChildren();
-  if(currentProfile?.role==="employer"){await loadMyJobs();await loadEmployerApplications();}
-  if(currentProfile?.role==="jobSeeker")await loadMyApplications();
-  if(isAdmin())await loadAdminJobs();
+}catch(e){box.textContent=e.message}
 }
-onAuthStateChanged(auth,async user=>{
-  currentProfile=null;updateAccountUI(user);
-  $("dashboardNotice").textContent=user?"Loading your dashboard...":"Login to view your dashboard.";
-  $("myJobs").replaceChildren();$("myApplications").replaceChildren();$("employerApplications").replaceChildren();
-  $("adminPanel").classList.toggle("hidden",!isAdmin());
-  if(!user){updateAccountUI(null);return;}
-  try{
-    if(!isAdmin()){const profileSnap=await getDoc(doc(db,"users",user.uid));currentProfile=profileSnap.exists()?profileSnap.data():null;}
-    updateAccountUI(user);
-    if(!currentProfile&&!isAdmin()){$("dashboardNotice").textContent="Please complete your profile above.";return;}
-    $("dashboardNotice").textContent="Welcome to your Swurkif dashboard.";await refreshDashboard();
-  }catch(e){showMessage(e.message,true);}
+
+// ADMIN DASHBOARD
+async function loadAdminDashboard(){
+if(!isAdmin())return message("Admin access required.");
+const pending=el("pendingJobs");
+const appsBox=el("adminApplications");
+pending.innerHTML="Loading...";
+appsBox.innerHTML="Loading...";
+try{
+const jobs=await db.collection("jobs").get();
+pending.innerHTML="";
+let found=false;
+jobs.forEach(doc=>{
+const j=doc.data();
+if(j.Status==="Pending"){
+found=true;
+pending.innerHTML+=`<div class="job">
+<h3>${escapeHTML(j.Title)}</h3>
+<p>Company: ${escapeHTML(j.Company)}</p>
+<p>Location: ${escapeHTML(j.Location)}</p>
+<p>Transaction ID: ${escapeHTML(j.transactionId)}</p>
+<p>Fee: Rs. ${escapeHTML(j.fee)}</p>
+<button class="success" onclick="approveJob('${doc.id}')">Verify & Approve</button>
+<button class="danger" onclick="rejectJob('${doc.id}')">Reject</button>
+</div>`;
+}
 });
-listenPublicJobs();
+if(!found)pending.innerHTML="<p>No pending jobs.</p>";
+
+const apps=await db.collection("applications").get();
+appsBox.innerHTML="";
+if(apps.empty)appsBox.innerHTML="<p>No applications yet.</p>";
+apps.forEach(doc=>{
+const a=doc.data();
+appsBox.innerHTML+=`<div class="job">
+<h3>${escapeHTML(a.jobTitle)}</h3>
+<p>Company: ${escapeHTML(a.company)}</p>
+<p>Applicant UID: ${escapeHTML(a.userId)}</p>
+<p>Status: ${escapeHTML(a.status)}</p>
+</div>`;
+});
+}catch(e){pending.textContent="Admin error: "+e.message}
+}
+
+// APPROVE
+async function approveJob(id){
+if(!isAdmin())return message("Admin access required.");
+if(!confirm("Have you verified receipt of Rs. 500 in JazzCash?"))return;
+try{
+await db.collection("jobs").doc(id).update({
+Status:"Approved",
+paymentStatus:"Paid",
+approvedAt:firebase.firestore.FieldValue.serverTimestamp()
+});
+message("Job approved.");
+loadAdminDashboard();
+}catch(e){message(e.message)}
+}
+
+// REJECT
+async function rejectJob(id){
+if(!isAdmin())return message("Admin access required.");
+if(!confirm("Reject this job?"))return;
+try{
+await db.collection("jobs").doc(id).update({Status:"Rejected"});
+message("Job rejected.");
+loadAdminDashboard();
+}catch(e){message(e.message)}
+}
+
+showSection("home");
 </script>
 </body>
 </html>
