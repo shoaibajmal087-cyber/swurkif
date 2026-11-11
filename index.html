@@ -208,3 +208,28 @@ document.getElementById("jobs").scrollIntoView();
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script>
+<script>
+async function signup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    document.getElementById("message").innerText = "Account created successfully!";
+  } catch (error) {
+    document.getElementById("message").innerText = error.message;
+  }
+}
+
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    document.getElementById("message").innerText = "Login successful!";
+  } catch (error) {
+    document.getElementById("message").innerText = error.message;
+  }
+}
+</script>
