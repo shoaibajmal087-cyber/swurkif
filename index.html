@@ -3,844 +3,520 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swurkif | Find Your Opportunity</title>
+<title>SWURKIF | Find Your Opportunity</title>
 <style>
-:root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--green:#16834a;--red:#c0392b}
+:root{--navy:#102b50;--blue:#1769c2;--light:#f3f7fc;--text:#1d2939;--green:#16834a;--red:#c0392b;--border:#d9e2ef}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
-header{background:var(--navy);color:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:27px;font-weight:bold}
+header{background:var(--navy);color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:23px;letter-spacing:1px}
+header small{opacity:.85}
 nav{display:flex;gap:8px;flex-wrap:wrap}
-button{border:0;border-radius:7px;padding:11px 15px;cursor:pointer;font-weight:bold}
-nav button{background:white;color:var(--navy)}
-.primary{background:var(--blue);color:white}
-.success{background:var(--green);color:white}
-.danger{background:var(--red);color:white}
-.hero{background:linear-gradient(120deg,#102b50,#1769c2);color:white;text-align:center;padding:60px 20px}
-.hero h1{font-size:36px}
-.container{max-width:1100px;margin:25px auto;padding:0 16px}
-.panel,.job,.auth{background:white;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 3px 14px #102b5010}
-h2,h3{color:var(--navy)}
-input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #ccd5df;border-radius:7px;font-size:15px}
-textarea{min-height:100px}
-label{font-weight:bold;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+button,.btn{border:0;border-radius:8px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:600;cursor:pointer}
+button.secondary{background:#e8eef7;color:var(--navy)}
+button.danger{background:var(--red)}
+button.success{background:var(--green)}
+button:disabled{opacity:.55;cursor:not-allowed}
+main{max-width:1100px;margin:22px auto;padding:0 14px}
+.card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:18px;margin-bottom:16px;box-shadow:0 3px 12px rgba(16,43,80,.05)}
+h2,h3{color:var(--navy);margin-top:0}
+h2{font-size:21px}
+h3{font-size:17px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 12px;font:inherit;background:#fff}
+textarea{min-height:95px;resize:vertical}
+label{font-size:14px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .hidden{display:none!important}
-.notice{background:#fff7e6;border:1px solid #f2d28b;padding:15px;border-radius:8px;line-height:1.6;margin:12px 0}
-.tag{display:inline-block;background:#e8f1ff;color:#1769c2;padding:5px 9px;border-radius:20px;font-size:12px}
-footer{background:var(--navy);color:white;text-align:center;padding:25px;margin-top:40px}
-#message{padding:12px;margin:15px 0;border-radius:7px;background:#e8f1ff;color:var(--navy)}
-.small{font-size:13px;color:#667085}
-.password-wrap{display:flex;gap:7px;align-items:center;margin:7px 0 15px}
-.password-wrap input{margin:0;flex:1;min-width:0}
-.password-wrap button{background:#e8f1ff;color:var(--navy);white-space:nowrap}
-.linkbtn{background:none;color:var(--blue);padding:7px 0;text-decoration:underline}
-.profile-picture{width:115px;height:115px;border-radius:50%;object-fit:cover;border:3px solid #dce8f5;background:#e8f1ff;display:block;margin:12px 0}
-.profile-placeholder{width:115px;height:115px;border-radius:50%;background:#e8f1ff;color:#1769c2;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:bold;margin:12px 0}
-@media(max-width:600px){header{justify-content:center}.hero h1{font-size:28px}nav{justify-content:center}}
+.muted{color:#667085;font-size:13px}
+.notice{padding:11px;border-radius:8px;background:#eef5ff;color:#174a82;margin:10px 0}
+.error{background:#fff0f0;color:#a12626}
+.successText{color:var(--green)}
+.job{border:1px solid var(--border);padding:14px;border-radius:10px;margin:10px 0}
+.job h3{margin:0 0 7px}
+.pill{display:inline-block;background:#e8eef7;color:#23476e;padding:4px 8px;border-radius:20px;font-size:12px;margin:3px 4px 3px 0}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.avatar{width:52px;height:52px;border-radius:50%;background:#dceaff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:20px}
+footer{text-align:center;padding:24px;color:#667085;font-size:13px}
+hr{border:0;border-top:1px solid var(--border);margin:16px 0}
+@media(max-width:600px){header{padding:14px}header h1{font-size:20px}main{margin:14px auto}.card{padding:14px}}
 </style>
 </head>
 <body>
-
 <header>
-<div class="logo">Swurkif</div>
-<nav>
-<button onclick="showSection('home')">Home</button>
-<button onclick="showSection('jobs')">Find Jobs</button>
-<button id="registerNav" onclick="showSection('register')">Register</button>
-<button id="loginNav" onclick="showSection('login')">Login</button>
-<button id="dashboardNav" class="hidden" onclick="showDashboard()">Dashboard</button>
-<button id="accountNav" class="hidden" onclick="showSection('account')">My Account</button>
-<button id="logoutNav" class="hidden" onclick="logout()">Logout</button>
-</nav>
+  <div><h1>SWURKIF</h1><small>Find Your Opportunity</small></div>
+  <nav id="topNav" class="hidden">
+    <button class="secondary" onclick="showSection('jobsSection')">Jobs</button>
+    <button class="secondary" onclick="showSection('profileSection')">My Profile</button>
+    <button class="secondary" onclick="showSection('dashboardSection')">Dashboard</button>
+    <button class="danger" onclick="logout()">Logout</button>
+  </nav>
 </header>
 
-<section class="hero" id="hero">
-<h1>Find Your Opportunity</h1>
-<p>Discover jobs, connect with employers and build your future.</p>
-<button class="primary" onclick="showSection('register')">Create Account</button>
-<button onclick="showSection('jobs')">Explore Jobs</button>
-</section>
+<main>
+  <div id="message" class="notice hidden"></div>
 
-<main class="container">
-<div id="message" class="hidden" role="status"></div>
+  <section id="authSection">
+    <div class="card">
+      <h2>Welcome to SWURKIF</h2>
+      <p class="muted">Create an account or log in to find work and opportunities.</p>
+      <div class="grid">
+        <div>
+          <h3>Create Account</h3>
+          <label>Full name</label><input id="regName" placeholder="Your full name">
+          <label>Email</label><input id="regEmail" type="email" placeholder="name@example.com">
+          <label>Password</label><input id="regPassword" type="password" placeholder="At least 6 characters">
+          <label>Account type</label>
+          <select id="regRole"><option value="jobseeker">Job Seeker</option><option value="Employer">Employer</option></select>
+          <button onclick="register()">Create Account</button>
+        </div>
+        <div>
+          <h3>Login</h3>
+          <label>Email</label><input id="loginEmail" type="email" placeholder="name@example.com">
+          <label>Password</label><input id="loginPassword" type="password" placeholder="Your password">
+          <button onclick="login()">Login</button>
+          <p><button class="secondary" onclick="forgotPassword()">Forgot password?</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="register" class="auth hidden">
-<h2>Create Your Account</h2>
-<label>Full Name</label>
-<input id="regName" autocomplete="name" placeholder="Enter your name">
+  <section id="dashboardSection" class="hidden">
+    <div class="card">
+      <div class="row">
+        <div><h2 id="welcomeTitle">Dashboard</h2><p id="roleLabel" class="muted"></p></div>
+        <div class="avatar" id="avatar">S</div>
+      </div>
+      <p id="dashboardHint"></p>
+    </div>
 
-<label>Email</label>
-<input id="regEmail" type="email" autocomplete="email" placeholder="Email address">
+    <div id="seekerDashboard" class="card hidden">
+      <h3>Job Seeker Dashboard</h3>
+      <p>Browse approved jobs, apply, and follow your application status.</p>
+      <button onclick="showSection('jobsSection')">Browse Jobs</button>
+      <hr><h3>My Applications</h3><div id="myApplications">Loading...</div>
+    </div>
 
-<label>Password</label>
-<div class="password-wrap">
-<input id="regPassword" type="password" autocomplete="new-password" placeholder="Minimum 6 characters">
-<button type="button" onclick="togglePassword('regPassword',this)">👁️ Show</button>
-</div>
+    <div id="employerDashboard" class="card hidden">
+      <h3>Employer Dashboard</h3>
+      <p>Post jobs for free. New jobs are reviewed by the SWURKIF admin before appearing publicly.</p>
+      <button onclick="showSection('postJobSection')">Post a Job</button>
+      <hr><h3>My Job Posts</h3><div id="myJobs">Loading...</div>
+      <hr><h3>Applications to My Jobs</h3><div id="employerApplications">Loading...</div>
+    </div>
 
-<label>Confirm Password</label>
-<div class="password-wrap">
-<input id="regConfirm" type="password" autocomplete="new-password" placeholder="Enter password again">
-<button type="button" onclick="togglePassword('regConfirm',this)">👁️ Show</button>
-</div>
+    <div id="adminDashboard" class="card hidden">
+      <h3>Admin Dashboard</h3>
+      <p>Review job posts and payment requests. Verify JazzCash payments manually before approving a contact unlock.</p>
+      <hr><h3>Pending Jobs</h3><div id="adminJobs">Loading...</div>
+      <hr><h3>Contact Payment Requests</h3><div id="adminPayments">Loading...</div>
+      <hr><h3>Applications</h3><div id="adminApplications">Loading...</div>
+    </div>
+  </section>
 
-<label>Account Type</label>
-<select id="regRole">
-<option value="jobseeker">Job Seeker</option>
-<option value="Employer">Employer</option>
-</select>
+  <section id="jobsSection" class="hidden">
+    <div class="card">
+      <div class="row"><h2>Available Jobs</h2><button class="secondary" onclick="loadJobs()">Refresh</button></div>
+      <input id="jobSearch" placeholder="Search by job title, company or location" oninput="filterJobs()">
+      <div id="jobsList">Loading jobs...</div>
+    </div>
+  </section>
 
-<label>Profile Picture (Optional)</label>
-<input id="regPhoto" type="file" accept="image/*">
-<p class="small">Picture lagana zaroori nahi. Aap baghair picture ke bhi account bana sakte hain.</p>
+  <section id="postJobSection" class="hidden">
+    <div class="card">
+      <h2>Post a Job</h2>
+      <p class="notice">Job posting is free. Your job will show after admin approval.</p>
+      <label>Job title</label><input id="jobTitle" placeholder="e.g. Electrician">
+      <label>Company name</label><input id="jobCompany" placeholder="Company name">
+      <label>Location</label><input id="jobLocation" placeholder="City / area">
+      <label>Job type</label><select id="jobType"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Remote</option><option>Internship</option></select>
+      <label>Salary (optional)</label><input id="jobSalary" placeholder="e.g. Rs. 35,000 per month">
+      <label>Job description</label><textarea id="jobDescription" placeholder="Explain duties, requirements and how to apply"></textarea>
+      <button onclick="postJob()">Submit Job for Review</button>
+    </div>
+  </section>
 
-<button class="primary" onclick="register()">Create Account</button>
-<p class="small">Already registered? <button class="linkbtn" onclick="showSection('login')">Login</button></p>
-</section>
+  <section id="profileSection" class="hidden">
+    <div class="card">
+      <h2>My Profile</h2>
+      <p class="muted">Profile picture is optional and temporarily unavailable while Storage is not enabled. You can use SWURKIF without a picture.</p>
+      <label>Full name</label><input id="profileName" placeholder="Full name">
+      <label>Phone number</label><input id="profilePhone" placeholder="03XXXXXXXXX">
+      <label>Email</label><input id="profileEmail" disabled>
+      <div id="seekerFields">
+        <label>Education</label><input id="profileEducation" placeholder="Your education">
+        <label>Skills</label><textarea id="profileSkills" placeholder="e.g. Electrical work, AC repair, computer skills"></textarea>
+        <label>Experience</label><textarea id="profileExperience" placeholder="Your work experience"></textarea>
+      </div>
+      <div id="employerFields" class="hidden">
+        <label>Company name</label><input id="profileCompany" placeholder="Company name">
+        <label>Company details</label><textarea id="profileCompanyDetails" placeholder="About your company"></textarea>
+      </div>
+      <button onclick="saveProfile()">Save Profile</button>
+    </div>
+  </section>
 
-<section id="login" class="auth hidden">
-<h2>Login to Swurkif</h2>
-<label>Email</label>
-<input id="loginEmail" type="email" autocomplete="username" placeholder="Email">
+  <section id="paymentSection" class="hidden">
+    <div class="card">
+      <h2>Unlock Contact Details</h2>
+      <p>One-time contact unlock fee: <strong>Rs. 500</strong> for this pair of users. You only pay once for the same pair after approval.</p>
+      <div class="notice">Send Rs. 500 through the JazzCash details provided by SWURKIF admin, then enter your transaction ID below. Do not submit a false transaction ID. Admin will verify payment manually.</div>
+      <label>JazzCash transaction ID</label><input id="transactionId" placeholder="Enter transaction / TID number">
+      <button onclick="submitContactPayment()">Submit Payment for Verification</button>
+      <p class="muted">Contact details remain hidden until admin verifies the payment and approves the request.</p>
+      <button class="secondary" onclick="showSection('dashboardSection')">Back to Dashboard</button>
+    </div>
+  </section>
 
-<label>Password</label>
-<div class="password-wrap">
-<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password">
-<button type="button" onclick="togglePassword('loginPassword',this)">👁️ Show</button>
-</div>
-<button class="linkbtn" onclick="forgotPassword()">Forgot Password?</button><br>
-<button class="primary" onclick="login()">Login</button>
-<p class="small">New to Swurkif? <button class="linkbtn" onclick="showSection('register')">Create account</button></p>
-</section>
-
-<section id="completeProfile" class="auth hidden">
-<h2>Complete Your Profile</h2>
-<p>Your Firebase login exists, but your Swurkif profile is missing. Complete it once to open your account.</p>
-
-<label>Your Name</label>
-<input id="profileName" placeholder="Enter your full name">
-
-<label>Account Type</label>
-<select id="profileRole">
-<option value="jobseeker">Job Seeker</option>
-<option value="Employer">Employer</option>
-</select>
-
-<label>Profile Picture (Optional)</label>
-<input id="completePhoto" type="file" accept="image/*">
-<p class="small">Picture optional hai. Is ke baghair bhi profile complete ho sakti hai.</p>
-
-<button class="primary" onclick="completeProfile()">Save Profile & Continue</button>
-</section>
-
-<section id="account" class="panel hidden">
-<h2>My Account</h2>
-
-<div id="accountPicture"></div>
-
-<label>Change Profile Picture (Optional)</label>
-<input id="accountPhoto" type="file" accept="image/*">
-<button class="primary" onclick="uploadAccountPicture()">Upload Picture</button>
-<button class="danger" onclick="removeAccountPicture()">Remove Picture</button>
-
-<hr>
-<p id="accountName"></p>
-<p id="accountEmail"></p>
-<p id="accountRole"></p>
-</section>
-
-<section id="jobs" class="hidden">
-<div class="panel">
-<h2>Find Jobs</h2>
-<input id="searchJob" placeholder="Search jobs, company or city" oninput="renderJobs()">
-</div>
-<div id="jobList" class="grid"></div>
-</section>
-
-<section id="employerPanel" class="panel hidden">
-<h2>Employer Dashboard</h2>
-<div class="notice">
-<h3>Job Posting Fee: Rs. 500</h3>
-<b>JazzCash Number:</b> 03027373872<br>
-<b>Account Title:</b> Shahzaib Ajmal
-<p>Send Rs. 500 and enter your transaction ID. Admin will manually verify payment.</p>
-</div>
-
-<label>Company Name</label>
-<input id="company" placeholder="Company name">
-<label>Job Title</label>
-<input id="title" placeholder="Job title">
-<label>Job Description</label>
-<textarea id="description" placeholder="Job details"></textarea>
-<label>Location</label>
-<input id="location" placeholder="City">
-<label>Job Type</label>
-<select id="type">
-<option>Full time</option><option>Part time</option><option>Remote</option><option>Contract</option><option>Internship</option>
-</select>
-<label>JazzCash Transaction ID</label>
-<input id="transactionId" placeholder="Transaction ID">
-<button class="primary" onclick="postJob()">Submit Job for Approval</button>
-<hr>
-<h3>My Posted Jobs</h3>
-<div id="employerJobs"></div>
-</section>
-
-<section id="seekerPanel" class="panel hidden">
-<h2>Job Seeker Dashboard</h2>
-<p>Welcome to your account. Explore approved jobs and track your applications here.</p>
-<button class="primary" onclick="showSection('jobs')">Explore Jobs</button>
-<h3>My Applications</h3>
-<div id="myApplications"></div>
-</section>
-
-<section id="adminPanel" class="panel hidden">
-<h2>Admin Dashboard</h2>
-<div class="notice">Check actual JazzCash payment before approving any job.</div>
-<h3>Pending Jobs</h3><div id="pendingJobs"></div>
-<hr><h3>Registered Users</h3><div id="allUsers"></div>
-<hr><h3>Applications</h3><div id="adminApplications"></div>
-</section>
+  <section id="contactSection" class="hidden">
+    <div class="card">
+      <h2>Unlocked Contact Details</h2>
+      <div id="contactDetails">Loading...</div>
+      <button class="secondary" onclick="showSection('dashboardSection')">Back to Dashboard</button>
+    </div>
+  </section>
 </main>
 
-<footer>
-<h2 style="color:white">Swurkif</h2>
-<p>Find Your Opportunity</p>
-<p>© 2026 Swurkif. All Rights Reserved.</p>
-</footer>
+<footer>© <span id="year"></span> SWURKIF. Find Your Opportunity.</footer>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
-
 <script>
-const firebaseConfig={
- apiKey:"AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
- authDomain:"swurkif.firebaseapp.com",
- projectId:"swurkif",
- storageBucket:"swurkif.firebasestorage.app",
- messagingSenderId:"250612764204",
- appId:"1:250612764204:web:43b30828262efcea6f4b89"
+const firebaseConfig = {
+  apiKey: "AIzaSyDYsLBw4HSGTDQM81FCo6jkPuHKKNtwc7A",
+  authDomain: "swurkif.firebaseapp.com",
+  projectId: "swurkif",
+  storageBucket: "swurkif.firebasestorage.app",
+  messagingSenderId: "250612764204",
+  appId: "1:250612764204:web:43b30828262efcea6f4b89"
 };
+const ADMIN_UID = "tsjGJI6nMZZZwhlpa4pmIHCYy3c2";
 
 firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-const auth=firebase.auth();
-const db=firebase.firestore();
-const storage=firebase.storage();
+let currentUser = null;
+let profile = null;
+let allJobs = [];
+let selectedApplication = null;
+let selectedOtherUser = null;
 
-const ADMIN_UID="tsjGJI6nMZZZwhlpa4pmIHCYy3c2";
+const $ = id => document.getElementById(id);
+$("year").textContent = new Date().getFullYear();
 
-let currentUser=null;
-let currentProfile=null;
-let jobsCache=[];
-
-function el(id){return document.getElementById(id)}
-
-function escapeHTML(v){
- return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))
+function showMessage(message, error=false) {
+  $("message").textContent = message;
+  $("message").classList.remove("hidden","error");
+  if(error) $("message").classList.add("error");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-function message(t){
- el("message").textContent=t;
- el("message").classList.remove("hidden");
- window.scrollTo({top:0,behavior:"smooth"});
+function clearMessage(){ $("message").classList.add("hidden"); }
+function hideAllSections(){
+  ["authSection","dashboardSection","jobsSection","postJobSection","profileSection","paymentSection","contactSection"].forEach(id=>$(id).classList.add("hidden"));
 }
-
-function togglePassword(id,btn){
- const input=el(id);
- const visible=input.type==="password";
- input.type=visible?"text":"password";
- btn.textContent=visible?"🙈 Hide":"👁️ Show";
-}
-
-function hideSections(){
- ["register","login","completeProfile","account","jobs","employerPanel","seekerPanel","adminPanel"].forEach(id=>el(id).classList.add("hidden"));
-}
-
 function showSection(id){
- hideSections();
- el("hero").classList.toggle("hidden",id!=="home");
- el(id).classList.remove("hidden");
- el("message").classList.add("hidden");
- if(id==="jobs")loadJobs();
- if(id==="account")showAccount();
+  hideAllSections();
+  $(id).classList.remove("hidden");
+  clearMessage();
+  if(id==="jobsSection") loadJobs();
+  if(id==="profileSection") fillProfileForm();
+  if(id==="dashboardSection") loadDashboard();
 }
-
-function isAdmin(){
- return !!(currentUser&&currentUser.uid===ADMIN_UID&&currentProfile?.role==="admin");
+function pairId(a,b){ return a < b ? a+"_"+b : b+"_"+a; }
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 }
-
-/* OPTIONAL PROFILE PICTURE */
-
-function validatePhoto(file){
- if(!file)return "No picture selected.";
- if(!file.type.startsWith("image/"))return "Please select an image file.";
- if(file.size>5*1024*1024)return "Picture must be smaller than 5 MB.";
- return null;
+function initials(name){
+  return String(name||"S").trim().split(/\s+/).slice(0,2).map(x=>x[0]||"").join("").toUpperCase();
 }
-
-async function saveProfilePicture(file){
- if(!currentUser||!file)return null;
-
- const error=validatePhoto(file);
- if(error)throw new Error(error);
-
- const path="profilePictures/"+currentUser.uid+"/profile";
- const ref=storage.ref().child(path);
-
- await ref.put(file,{
-  contentType:file.type
- });
-
- const url=await ref.getDownloadURL();
-
- await db.collection("users").doc(currentUser.uid).update({
-  photoURL:url,
-  photoUpdatedAt:firebase.firestore.FieldValue.serverTimestamp()
- });
-
- if(currentProfile)currentProfile.photoURL=url;
-
- return url;
-}
-
-function pictureHTML(url,name){
- if(url){
-  return `<img class="profile-picture" src="${escapeHTML(url)}" alt="Profile picture">`;
- }
- const initial=escapeHTML((name||"U").trim().charAt(0).toUpperCase()||"U");
- return `<div class="profile-placeholder">${initial}</div>`;
-}
-
-async function uploadAccountPicture(){
- if(!currentUser)return message("Please login first.");
-
- const file=el("accountPhoto").files[0];
- if(!file)return message("Please select a picture first.");
-
- try{
-  message("Uploading picture...");
-  await saveProfilePicture(file);
-  el("accountPhoto").value="";
-  showAccount();
-  message("Profile picture updated successfully!");
- }catch(e){
-  message("Picture upload failed: "+friendlyError(e));
- }
-}
-
-async function removeAccountPicture(){
- if(!currentUser||!currentProfile)return message("Please login first.");
-
- if(!currentProfile.photoURL)return message("There is no profile picture to remove.");
- if(!confirm("Are you sure you want to remove your profile picture?"))return;
-
- try{
-  await storage.ref().child("profilePictures/"+currentUser.uid+"/profile").delete().catch(()=>{});
-  await db.collection("users").doc(currentUser.uid).update({
-   photoURL:firebase.firestore.FieldValue.delete()
-  });
-  delete currentProfile.photoURL;
-  el("accountPhoto").value="";
-  showAccount();
-  message("Profile picture removed. You can use Swurkif without a picture.");
- }catch(e){
-  message("Could not remove picture: "+friendlyError(e));
- }
-}
-
-/* DASHBOARD */
-
-function showDashboard(){
- if(!currentUser)return message("Please login first.");
-
- if(!currentProfile){
-  el("hero").classList.add("hidden");
-  hideSections();
-  el("completeProfile").classList.remove("hidden");
-  return;
- }
-
- hideSections();
- el("hero").classList.add("hidden");
-
- if(isAdmin()){
-  el("adminPanel").classList.remove("hidden");
-  loadAdminDashboard();
- }else if(currentProfile.role==="Employer"){
-  el("employerPanel").classList.remove("hidden");
-  loadEmployerJobs();
- }else if(currentProfile.role==="jobseeker"){
-  el("seekerPanel").classList.remove("hidden");
-  loadMyApplications();
- }else{
-  message("Your account role is not valid. Contact Admin.");
- }
-}
-
-/* REGISTER */
 
 async function register(){
- const name=el("regName").value.trim();
- const email=el("regEmail").value.trim();
- const password=el("regPassword").value;
- const confirmPassword=el("regConfirm").value;
- const role=el("regRole").value;
- const photo=el("regPhoto").files[0];
-
- if(!name||!email||!password||!confirmPassword)return message("Please complete all required fields.");
- if(password.length<6)return message("Password must contain at least 6 characters.");
- if(password!==confirmPassword)return message("Passwords do not match.");
-
- if(photo){
-  const error=validatePhoto(photo);
-  if(error)return message(error);
- }
-
- try{
-  const result=await auth.createUserWithEmailAndPassword(email,password);
-
-  currentUser=result.user;
-  currentProfile={name,email,role};
-
-  await db.collection("users").doc(result.user.uid).set({
-   name,email,role,
-   createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  if(photo){
-   try{
-    await saveProfilePicture(photo);
-   }catch(photoError){
-    updateNav();
-    showDashboard();
-    return message("Account created, but picture upload failed: "+photoError.message+". You can upload it later from My Account.");
-   }
-  }
-
-  updateNav();
-  message("Account created successfully! Your dashboard is ready.");
-  showDashboard();
-
- }catch(e){
-  message(friendlyError(e));
- }
+  const name=$("regName").value.trim(), email=$("regEmail").value.trim(), password=$("regPassword").value, role=$("regRole").value;
+  if(!name||!email||password.length<6){showMessage("Name, valid email aur kam az kam 6 characters ka password enter karein.",true);return;}
+  try{
+    const cred=await auth.createUserWithEmailAndPassword(email,password);
+    await db.collection("users").doc(cred.user.uid).set({
+      name,email,role,createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    await db.collection("privateContacts").doc(cred.user.uid).set({
+      phone:"",email,updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    showMessage("Account ban gaya hai. Apni profile complete karein.");
+  }catch(e){showMessage(e.message,true);}
 }
-
-/* LOGIN */
-
 async function login(){
- const email=el("loginEmail").value.trim();
- const password=el("loginPassword").value;
-
- if(!email||!password)return message("Enter your email and password.");
-
- try{
-  await auth.signInWithEmailAndPassword(email,password);
-  message("Login successful!");
- }catch(e){
-  message(friendlyError(e));
- }
+  const email=$("loginEmail").value.trim(), password=$("loginPassword").value;
+  if(!email||!password){showMessage("Email aur password enter karein.",true);return;}
+  try{await auth.signInWithEmailAndPassword(email,password);}
+  catch(e){showMessage(e.message,true);}
 }
-
 async function forgotPassword(){
- const email=el("loginEmail").value.trim();
- if(!email)return message("Enter your email first, then select Forgot Password.");
-
- try{
-  await auth.sendPasswordResetEmail(email);
-  message("Password reset link sent. Check your email inbox and spam folder.");
- }catch(e){
-  message(friendlyError(e));
- }
+  const email=$("loginEmail").value.trim();
+  if(!email){showMessage("Pehle Login wale box mein apna email likhein.",true);return;}
+  try{await auth.sendPasswordResetEmail(email);showMessage("Password reset link aap ke email par bhej diya gaya hai.");}
+  catch(e){showMessage(e.message,true);}
 }
-
-/* COMPLETE PROFILE */
-
-async function completeProfile(){
- if(!currentUser)return message("Please login first.");
-
- const name=el("profileName").value.trim();
- const role=el("profileRole").value;
- const photo=el("completePhoto").files[0];
-
- if(!name)return message("Enter your name.");
-
- if(photo){
-  const error=validatePhoto(photo);
-  if(error)return message(error);
- }
-
- try{
-  await db.collection("users").doc(currentUser.uid).set({
-   name,
-   email:currentUser.email||"",
-   role,
-   createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  currentProfile={name,email:currentUser.email||"",role};
-
-  if(photo){
-   try{
-    await saveProfilePicture(photo);
-   }catch(photoError){
-    updateNav();
-    showDashboard();
-    return message("Profile saved, but picture upload failed: "+photoError.message+". You can upload it later.");
-   }
-  }
-
-  updateNav();
-  message("Profile saved. Welcome to Swurkif!");
-  showDashboard();
-
- }catch(e){
-  message("Profile could not be saved: "+friendlyError(e));
- }
-}
-
-function friendlyError(e){
- const codes={
- "auth/email-already-in-use":"This email is already registered. Please login.",
- "auth/invalid-email":"Please enter a valid email address.",
- "auth/weak-password":"Choose a stronger password (at least 6 characters).",
- "auth/user-not-found":"No account found with this email.",
- "auth/wrong-password":"Incorrect password.",
- "auth/invalid-credential":"Email or password is incorrect.",
- "auth/too-many-requests":"Too many attempts. Please try again later.",
- "auth/network-request-failed":"Internet connection problem. Please try again."
- };
- return codes[e.code]||e.message||"Something went wrong.";
-}
-
-function updateNav(){
- const logged=!!currentUser;
- ["dashboardNav","accountNav","logoutNav"].forEach(id=>el(id).classList.toggle("hidden",!logged));
- ["registerNav","loginNav"].forEach(id=>el(id).classList.toggle("hidden",logged));
-}
-
-async function logout(){
- try{
-  await auth.signOut();
-  currentUser=null;
-  currentProfile=null;
-  updateNav();
-  showSection("home");
-  message("You have logged out.");
- }catch(e){
-  message(friendlyError(e));
- }
-}
-
-/* AUTH STATE */
+async function logout(){try{await auth.signOut();}catch(e){showMessage(e.message,true);}}
 
 auth.onAuthStateChanged(async user=>{
- currentUser=user;
- currentProfile=null;
- updateNav();
-
- if(!user)return;
-
- try{
-  const doc=await db.collection("users").doc(user.uid).get();
-
-  if(doc.exists){
-   currentProfile=doc.data();
-   updateNav();
-   message("Welcome back, "+(currentProfile.name||user.email)+"!");
-   showDashboard();
-  }else{
-   updateNav();
-   el("hero").classList.add("hidden");
-   hideSections();
-   el("completeProfile").classList.remove("hidden");
-   message("Login successful. Complete your profile to continue.");
+  currentUser=user;
+  if(!user){
+    profile=null;$("topNav").classList.add("hidden");hideAllSections();$("authSection").classList.remove("hidden");return;
   }
- }catch(e){
-  message("Could not load your profile: "+friendlyError(e));
- }
+  try{
+    const snap=await db.collection("users").doc(user.uid).get();
+    if(!snap.exists){
+      profile=null;
+      showMessage("Aap ka account record nahi mila. Admin se rabta karein.",true);
+      await auth.signOut();return;
+    }
+    profile=snap.data();
+    $("topNav").classList.remove("hidden");
+    $("welcomeTitle").textContent="Welcome, "+(profile.name||"User");
+    $("roleLabel").textContent="Account: "+profile.role;
+    $("avatar").textContent=initials(profile.name);
+    $("dashboardHint").textContent=profile.role==="admin"?"You have administrator access.":profile.role==="Employer"?"Manage your job posts and review applicants.":"Find suitable jobs and track your applications.";
+    hideAllSections();$("dashboardSection").classList.remove("hidden");
+    loadDashboard();
+  }catch(e){showMessage(e.message,true);}
 });
 
-/* MY ACCOUNT */
-
-function showAccount(){
- if(!currentUser){
-  el("accountName").textContent="Please login first.";
-  return;
- }
-
- el("accountPicture").innerHTML=pictureHTML(
-  currentProfile?.photoURL,
-  currentProfile?.name
- );
-
- el("accountName").textContent="Name: "+(currentProfile?.name||"Not set");
- el("accountEmail").textContent="Email: "+(currentUser.email||"");
- el("accountRole").textContent="Role: "+(currentProfile?.role||"Profile incomplete");
+function fillProfileForm(){
+  if(!profile)return;
+  $("profileName").value=profile.name||"";
+  $("profileEmail").value=profile.email||currentUser.email||"";
+  $("profilePhone").value="";
+  $("profileEducation").value=profile.education||"";
+  $("profileSkills").value=profile.skills||"";
+  $("profileExperience").value=profile.experience||"";
+  $("profileCompany").value=profile.companyName||"";
+  $("profileCompanyDetails").value=profile.companyDetails||"";
+  const isEmployer=profile.role==="Employer";
+  $("seekerFields").classList.toggle("hidden",isEmployer);
+  $("employerFields").classList.toggle("hidden",!isEmployer);
+  db.collection("privateContacts").doc(currentUser.uid).get().then(s=>{
+    if(s.exists)$("profilePhone").value=s.data().phone||"";
+  }).catch(e=>showMessage(e.message,true));
+}
+async function saveProfile(){
+  if(!currentUser||!profile)return;
+  const name=$("profileName").value.trim(),phone=$("profilePhone").value.trim();
+  if(!name){showMessage("Full name zaroor likhein.",true);return;}
+  const updates={name};
+  if(profile.role==="jobseeker"){
+    updates.education=$("profileEducation").value.trim();
+    updates.skills=$("profileSkills").value.trim();
+    updates.experience=$("profileExperience").value.trim();
+  }
+  if(profile.role==="Employer"){
+    updates.companyName=$("profileCompany").value.trim();
+    updates.companyDetails=$("profileCompanyDetails").value.trim();
+  }
+  try{
+    await db.collection("users").doc(currentUser.uid).update(updates);
+    await db.collection("privateContacts").doc(currentUser.uid).set({
+      phone,email:currentUser.email||"",updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    },{merge:true});
+    profile={...profile,...updates};
+    $("welcomeTitle").textContent="Welcome, "+name;
+    $("avatar").textContent=initials(name);
+    showMessage("Profile save ho gayi.");
+  }catch(e){showMessage(e.message,true);}
 }
 
-/* JOB SYSTEM */
-
 async function postJob(){
- if(!currentUser||currentProfile?.role!=="Employer")return message("Please login with an Employer account.");
-
- const company=el("company").value.trim();
- const title=el("title").value.trim();
- const description=el("description").value.trim();
- const location=el("location").value.trim();
- const type=el("type").value;
- const transactionId=el("transactionId").value.trim();
-
- if(!company||!title||!description||!location||!transactionId)return message("Please fill all fields.");
-
- try{
-  await db.collection("jobs").add({
-   Company:company,
-   Description:description,
-   Location:location,
-   "Owner id":currentUser.uid,
-   Status:"Pending",
-   Title:title,
-   Type:type,
-   fee:500,
-   paymentMethod:"JazzCash",
-   paymentStatus:"Pending",
-   transactionId,
-   createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  message("Job submitted. Admin will verify payment.");
-  ["company","title","description","location","transactionId"].forEach(id=>el(id).value="");
-  loadEmployerJobs();
-
- }catch(e){
-  message("Job submission failed: "+friendlyError(e));
- }
+  if(!profile||profile.role!=="Employer"){showMessage("Sirf Employer job post kar sakta hai.",true);return;}
+  const Title=$("jobTitle").value.trim(),Company=$("jobCompany").value.trim(),Location=$("jobLocation").value.trim(),Description=$("jobDescription").value.trim();
+  if(!Title||!Company||!Location||!Description){showMessage("Title, company, location aur description complete karein.",true);return;}
+  try{
+    await db.collection("jobs").add({
+      Title,Company,Location,Description,Type:$("jobType").value,
+      Salary:$("jobSalary").value.trim(),
+      "Owner id":currentUser.uid,
+      Status:"Pending",
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    ["jobTitle","jobCompany","jobLocation","jobDescription","jobSalary"].forEach(id=>$(id).value="");
+    showMessage("Job admin review ke liye submit ho gayi. Posting free hai.");
+    showSection("dashboardSection");
+  }catch(e){showMessage(e.message,true);}
 }
 
 async function loadJobs(){
- const list=el("jobList");
- if(!currentUser){list.innerHTML="<p>Please login to view jobs.</p>";return;}
-
- list.innerHTML="Loading...";
-
- try{
-  const snap=await db.collection("jobs").get();
-  jobsCache=[];
-  snap.forEach(d=>jobsCache.push({id:d.id,...d.data()}));
-  renderJobs();
- }catch(e){
-  list.textContent="Error: "+friendlyError(e);
- }
+  if(!currentUser)return;
+  $("jobsList").textContent="Loading jobs...";
+  try{
+    const snap=await db.collection("jobs").where("Status","==","Approved").get();
+    allJobs=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderJobs(allJobs);
+  }catch(e){$("jobsList").textContent="Jobs load nahi ho sakin: "+e.message;}
 }
-
-function renderJobs(){
- const list=el("jobList");
- const search=el("searchJob").value.toLowerCase();
-
- const filtered=jobsCache
- .filter(j=>j.Status==="Approved"||j["Owner id"]===currentUser?.uid||isAdmin())
- .filter(j=>[j.Title,j.Company,j.Location].join(" ").toLowerCase().includes(search));
-
- if(!filtered.length){
-  list.innerHTML="<p>No jobs found.</p>";
-  return;
- }
-
- list.innerHTML=filtered.map(j=>`
- <div class="job">
- <h3>${escapeHTML(j.Title)}</h3>
- <p><b>Company:</b> ${escapeHTML(j.Company)}</p>
- <p><b>Location:</b> ${escapeHTML(j.Location)}</p>
- <p><b>Type:</b> ${escapeHTML(j.Type)}</p>
- <p>${escapeHTML(j.Description)}</p>
- <span class="tag">${escapeHTML(j.Status)}</span>
- ${j.Status==="Approved"&&currentProfile?.role==="jobseeker"?`<button class="primary" onclick="applyJob('${j.id}')">Apply Now</button>`:""}
- </div>`).join("");
+function renderJobs(jobs){
+  if(!jobs.length){$("jobsList").innerHTML="<p class='muted'>Abhi approved jobs available nahi hain.</p>";return;}
+  $("jobsList").innerHTML=jobs.map(j=>`
+    <div class="job">
+      <h3>${escapeHtml(j.Title)}</h3>
+      <div><strong>${escapeHtml(j.Company)}</strong> · ${escapeHtml(j.Location)}</div>
+      <p>${escapeHtml(j.Description)}</p>
+      <span class="pill">${escapeHtml(j.Type||"Job")}</span>
+      ${j.Salary?`<span class="pill">${escapeHtml(j.Salary)}</span>`:""}
+      ${profile&&profile.role==="jobseeker"?`<button onclick="applyJob('${j.id}')">Apply Now</button>`:""}
+    </div>`).join("");
 }
-
+function filterJobs(){
+  const q=$("jobSearch").value.toLowerCase();
+  renderJobs(allJobs.filter(j=>[j.Title,j.Company,j.Location,j.Description].join(" ").toLowerCase().includes(q)));
+}
 async function applyJob(jobId){
- if(!currentUser||currentProfile?.role!=="jobseeker")return message("Login as Job Seeker first.");
-
- try{
-  const j=jobsCache.find(x=>x.id===jobId);
-  if(!j||j.Status!=="Approved")return message("Job unavailable.");
-
-  await db.collection("applications").add({
-   userId:currentUser.uid,
-   employerId:j["Owner id"],
-   jobId,
-   jobTitle:j.Title,
-   company:j.Company,
-   status:"Pending",
-   createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  message("Application submitted successfully.");
-  loadMyApplications();
- }catch(e){
-  message("Application failed: "+friendlyError(e));
- }
+  if(!profile||profile.role!=="jobseeker"){showMessage("Apply karne ke liye Job Seeker account zaroori hai.",true);return;}
+  try{
+    const jobSnap=await db.collection("jobs").doc(jobId).get();
+    if(!jobSnap.exists||jobSnap.data().Status!=="Approved"){showMessage("Ye job ab available nahi hai.",true);return;}
+    const job=jobSnap.data();
+    const existing=await db.collection("applications").where("userId","==",currentUser.uid).where("jobId","==",jobId).get();
+    if(!existing.empty){showMessage("Aap is job ke liye pehle apply kar chuke hain.");return;}
+    await db.collection("applications").add({
+      userId:currentUser.uid,employerId:job["Owner id"],jobId,
+      jobTitle:job.Title,company:job.Company,status:"Pending",
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    showMessage("Application successfully submit ho gayi.");
+  }catch(e){showMessage(e.message,true);}
 }
 
-async function loadEmployerJobs(){
- const box=el("employerJobs");
- box.innerHTML="Loading...";
-
- try{
-  const snap=await db.collection("jobs").where("Owner id","==",currentUser.uid).get();
-
-  if(snap.empty){
-   box.innerHTML="<p>No jobs posted yet.</p>";
-   return;
-  }
-
-  box.innerHTML="";
-  snap.forEach(d=>{
-   const j=d.data();
-   box.innerHTML+=`<div class="job">
-   <h3>${escapeHTML(j.Title)}</h3>
-   <p>${escapeHTML(j.Company)}</p>
-   <p>Status: ${escapeHTML(j.Status)}</p>
-   <p>Payment: ${escapeHTML(j.paymentStatus||"Not available")}</p>
-   </div>`;
-  });
- }catch(e){
-  box.textContent=friendlyError(e);
- }
+async function loadDashboard(){
+  if(!currentUser||!profile)return;
+  $("seekerDashboard").classList.add("hidden");
+  $("employerDashboard").classList.add("hidden");
+  $("adminDashboard").classList.add("hidden");
+  if(profile.role==="admin"){ $("adminDashboard").classList.remove("hidden");await loadAdmin(); }
+  else if(profile.role==="Employer"){ $("employerDashboard").classList.remove("hidden");await loadEmployer(); }
+  else { $("seekerDashboard").classList.remove("hidden");await loadSeeker(); }
+}
+async function loadSeeker(){
+  $("myApplications").textContent="Loading...";
+  try{
+    const snap=await db.collection("applications").where("userId","==",currentUser.uid).get();
+    if(snap.empty){$("myApplications").innerHTML="<p class='muted'>Aap ne abhi kisi job ke liye apply nahi kiya.</p>";return;}
+    $("myApplications").innerHTML=snap.docs.map(d=>{
+      const a=d.data();
+      return `<div class="job"><strong>${escapeHtml(a.jobTitle)}</strong> · ${escapeHtml(a.company)}<br><span class="pill">${escapeHtml(a.status)}</span>
+      ${a.status==="Accepted"?`<button onclick="openPayment('${d.id}','${a.employerId}')">Unlock Employer Contact (Rs. 500)</button>`:""}</div>`;
+    }).join("");
+  }catch(e){$("myApplications").textContent=e.message;}
+}
+async function loadEmployer(){
+  $("myJobs").textContent="Loading...";
+  $("employerApplications").textContent="Loading...";
+  try{
+    const jobs=await db.collection("jobs").where("Owner id","==",currentUser.uid).get();
+    $("myJobs").innerHTML=jobs.empty?"<p class='muted'>Aap ne abhi job post nahi ki.</p>":jobs.docs.map(d=>{
+      const j=d.data();return `<div class="job"><strong>${escapeHtml(j.Title)}</strong> · ${escapeHtml(j.Location)} <span class="pill">${escapeHtml(j.Status)}</span></div>`;
+    }).join("");
+    const apps=await db.collection("applications").where("employerId","==",currentUser.uid).get();
+    if(apps.empty){$("employerApplications").innerHTML="<p class='muted'>Abhi koi application nahi aayi.</p>";return;}
+    $("employerApplications").innerHTML=apps.docs.map(d=>{
+      const a=d.data();return `<div class="job"><strong>${escapeHtml(a.jobTitle)}</strong> · ${escapeHtml(a.company)}<br>Applicant ID: ${escapeHtml(a.userId)}<br><span class="pill">${escapeHtml(a.status)}</span>
+      ${a.status==="Pending"?`<button class="success" onclick="updateApplication('${d.id}','Accepted')">Accept</button> <button class="danger" onclick="updateApplication('${d.id}','Rejected')">Reject</button>`:""}
+      ${a.status==="Accepted"?`<button onclick="openPayment('${d.id}','${a.userId}')">Unlock Applicant Contact (Rs. 500)</button>`:""}</div>`;
+    }).join("");
+  }catch(e){$("employerApplications").textContent=e.message;}
+}
+async function updateApplication(id,status){
+  try{await db.collection("applications").doc(id).update({status});showMessage("Application "+status.toLowerCase()+" kar di.");loadDashboard();}
+  catch(e){showMessage(e.message,true);}
+}
+async function loadAdmin(){
+  $("adminJobs").textContent="Loading...";
+  $("adminPayments").textContent="Loading...";
+  $("adminApplications").textContent="Loading...";
+  try{
+    const [jobs,payments,apps]=await Promise.all([
+      db.collection("jobs").where("Status","==","Pending").get(),
+      db.collection("contactPayments").where("status","==","Pending").get(),
+      db.collection("applications").get()
+    ]);
+    $("adminJobs").innerHTML=jobs.empty?"<p class='muted'>No pending jobs.</p>":jobs.docs.map(d=>{
+      const j=d.data();return `<div class="job"><strong>${escapeHtml(j.Title)}</strong> · ${escapeHtml(j.Company)} · ${escapeHtml(j.Location)}<p>${escapeHtml(j.Description)}</p>
+      <button class="success" onclick="reviewJob('${d.id}','Approved')">Approve</button> <button class="danger" onclick="reviewJob('${d.id}','Rejected')">Reject</button></div>`;
+    }).join("");
+    $("adminPayments").innerHTML=payments.empty?"<p class='muted'>No pending payment requests.</p>":payments.docs.map(d=>{
+      const p=d.data();return `<div class="job"><strong>Rs. ${escapeHtml(p.amount)}</strong><br>Payer: ${escapeHtml(p.payerId)}<br>Other user: ${escapeHtml(p.otherUserId)}<br>Transaction ID: ${escapeHtml(p.transactionId)}<br>Application: ${escapeHtml(p.applicationId)}
+      <p class="muted">JazzCash payment ko apne account mein manually verify karne ke baad hi approve karein.</p>
+      <button class="success" onclick="approvePayment('${d.id}')">Payment Verified — Approve Unlock</button></div>`;
+    }).join("");
+    $("adminApplications").innerHTML=apps.empty?"<p class='muted'>No applications.</p>":apps.docs.map(d=>{
+      const a=d.data();return `<div class="job">${escapeHtml(a.jobTitle)} · ${escapeHtml(a.company)}<br>Applicant: ${escapeHtml(a.userId)}<br>Employer: ${escapeHtml(a.employerId)}<br><span class="pill">${escapeHtml(a.status)}</span></div>`;
+    }).join("");
+  }catch(e){showMessage("Admin data load error: "+e.message,true);}
+}
+async function reviewJob(id,status){
+  try{await db.collection("jobs").doc(id).update({Status:status});showMessage("Job status: "+status);loadAdmin();}
+  catch(e){showMessage(e.message,true);}
 }
 
-async function loadMyApplications(){
- const box=el("myApplications");
- box.innerHTML="Loading...";
-
- try{
-  const snap=await db.collection("applications").where("userId","==",currentUser.uid).get();
-
-  if(snap.empty){
-   box.innerHTML="<p>No applications yet.</p>";
-   return;
-  }
-
-  box.innerHTML="";
-  snap.forEach(d=>{
-   const a=d.data();
-   box.innerHTML+=`<div class="job">
-   <h3>${escapeHTML(a.jobTitle)}</h3>
-   <p>Company: ${escapeHTML(a.company)}</p>
-   <p>Status: ${escapeHTML(a.status)}</p>
-   </div>`;
-  });
- }catch(e){
-  box.textContent=friendlyError(e);
- }
+async function openPayment(applicationId,otherUserId){
+  selectedApplication=applicationId;selectedOtherUser=otherUserId;
+  const pid=pairId(currentUser.uid,otherUserId);
+  try{
+    const unlock=await db.collection("unlocks").doc(pid).get();
+    if(unlock.exists){await showUnlockedContact(otherUserId);return;}
+    const pending=await db.collection("contactPayments").where("pairId","==",pid).where("status","==","Pending").get();
+    if(!pending.empty){showMessage("Is user ke sath Rs. 500 payment request pehle se pending hai. Admin verification ka intezar karein.");return;}
+    showSection("paymentSection");
+  }catch(e){showMessage(e.message,true);}
 }
-
-/* ADMIN */
-
-async function loadAdminDashboard(){
- if(!isAdmin())return message("Admin access required.");
-
- const pending=el("pendingJobs");
- const appsBox=el("adminApplications");
- const usersBox=el("allUsers");
-
- pending.innerHTML=appsBox.innerHTML=usersBox.innerHTML="Loading...";
-
- try{
-  const [jobsSnap,appsSnap,usersSnap]=await Promise.all([
-   db.collection("jobs").get(),
-   db.collection("applications").get(),
-   db.collection("users").get()
-  ]);
-
-  pending.innerHTML="";
-  let found=false;
-
-  jobsSnap.forEach(d=>{
-   const j=d.data();
-   if(j.Status==="Pending"){
-    found=true;
-    pending.innerHTML+=`<div class="job">
-    <h3>${escapeHTML(j.Title)}</h3>
-    <p>Company: ${escapeHTML(j.Company)}</p>
-    <p>Location: ${escapeHTML(j.Location)}</p>
-    <p>Transaction ID: ${escapeHTML(j.transactionId)}</p>
-    <p>Fee: Rs. ${escapeHTML(j.fee)}</p>
-    <button class="success" onclick="approveJob('${d.id}')">Verify & Approve</button>
-    <button class="danger" onclick="rejectJob('${d.id}')">Reject</button>
-    </div>`;
-   }
-  });
-
-  if(!found)pending.innerHTML="<p>No pending jobs.</p>";
-
-  usersBox.innerHTML="";
-  if(usersSnap.empty)usersBox.innerHTML="<p>No users found.</p>";
-
-  usersSnap.forEach(d=>{
-   const u=d.data();
-   usersBox.innerHTML+=`<div class="job">
-   ${pictureHTML(u.photoURL,u.name)}
-   <b>${escapeHTML(u.name||"No name")}</b>
-   <p>${escapeHTML(u.email||"")}</p>
-   <p>Role: ${escapeHTML(u.role||"Unknown")}</p>
-   </div>`;
-  });
-
-  appsBox.innerHTML="";
-  if(appsSnap.empty)appsBox.innerHTML="<p>No applications yet.</p>";
-
-  appsSnap.forEach(d=>{
-   const a=d.data();
-   appsBox.innerHTML+=`<div class="job">
-   <h3>${escapeHTML(a.jobTitle)}</h3>
-   <p>Company: ${escapeHTML(a.company)}</p>
-   <p>Applicant UID: ${escapeHTML(a.userId)}</p>
-   <p>Status: ${escapeHTML(a.status)}</p>
-   </div>`;
-  });
-
- }catch(e){
-  pending.textContent="Admin error: "+friendlyError(e);
- }
+async function submitContactPayment(){
+  const transactionId=$("transactionId").value.trim();
+  if(!transactionId||!selectedApplication||!selectedOtherUser){showMessage("Transaction ID enter karein.",true);return;}
+  const pid=pairId(currentUser.uid,selectedOtherUser);
+  try{
+    const unlock=await db.collection("unlocks").doc(pid).get();
+    if(unlock.exists){await showUnlockedContact(selectedOtherUser);return;}
+    await db.collection("contactPayments").add({
+      payerId:currentUser.uid,amount:500,status:"Pending",
+      applicationId:selectedApplication,otherUserId:selectedOtherUser,
+      pairId:pid,transactionId,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    $("transactionId").value="";
+    showMessage("Payment request submit ho gayi. Admin verification ke baad contact unlock hoga.");
+    showSection("dashboardSection");
+  }catch(e){showMessage(e.message,true);}
 }
-
-async function approveJob(id){
- if(!isAdmin())return message("Admin access required.");
- if(!confirm("Have you verified receipt of Rs. 500 in JazzCash?"))return;
-
- try{
-  await db.collection("jobs").doc(id).update({
-   Status:"Approved",
-   paymentStatus:"Paid",
-   approvedAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-  message("Job approved.");
-  loadAdminDashboard();
- }catch(e){
-  message(friendlyError(e));
- }
+async function approvePayment(paymentId){
+  try{
+    const paymentRef=db.collection("contactPayments").doc(paymentId);
+    const snap=await paymentRef.get();
+    if(!snap.exists){showMessage("Payment request nahi mili.",true);return;}
+    const p=snap.data();
+    if(p.status!=="Pending"){showMessage("Ye request pehle process ho chuki hai.",true);return;}
+    const pid=p.pairId;
+    const parts=pid.split("_");
+    if(parts.length<2){showMessage("Pair ID invalid hai.",true);return;}
+    const userA=parts[0],userB=parts.slice(1).join("_");
+    const unlockRef=db.collection("unlocks").doc(pid);
+    await db.runTransaction(async tx=>{
+      const unlockSnap=await tx.get(unlockRef);
+      if(!unlockSnap.exists){
+        tx.set(unlockRef,{userA,userB,amount:500,paymentId,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+      }
+      tx.update(paymentRef,{status:"Approved",verifiedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    });
+    showMessage("Payment approved aur contact pair unlock ho gaya.");
+    loadAdmin();
+  }catch(e){showMessage("Approve nahi ho saka: "+e.message,true);}
 }
-
-async function rejectJob(id){
- if(!isAdmin())return message("Admin access required.");
- if(!confirm("Reject this job?"))return;
-
- try{
-  await db.collection("jobs").doc(id).update({Status:"Rejected"});
-  message("Job rejected.");
-  loadAdminDashboard();
- }catch(e){
-  message(friendlyError(e));
- }
+async function showUnlockedContact(otherUserId){
+  try{
+    const snap=await db.collection("privateContacts").doc(otherUserId).get();
+    if(!snap.exists){showMessage("User ne abhi contact details add nahi ki.",true);return;}
+    const c=snap.data();
+    $("contactDetails").innerHTML=`<p><strong>Phone:</strong> ${escapeHtml(c.phone||"Not provided")}</p><p><strong>Email:</strong> ${escapeHtml(c.email||"Not provided")}</p>`;
+    showSection("contactSection");
+  }catch(e){showMessage(e.message,true);}
 }
-
-showSection("home");
 </script>
 </body>
 </html>
